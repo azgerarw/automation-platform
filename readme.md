@@ -67,8 +67,8 @@ Example event:
 {
   "event_type": "payment.received",
   "payload": { 
-       'amount': 120,
-       'user': 'vip'
+       "amount": 120,
+       "user": "vip"
   },
   "user": "2",
   "message": "payment received by user 2"
