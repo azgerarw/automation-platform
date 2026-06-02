@@ -100,6 +100,12 @@ Responsibilities:
 
 This service acts as the core processing engine of the platform.
 
+#### Realtime Service
+
+* Connects with frontend via websockets
+* Consume events from redis
+* Send event updates to frontend dashboard and admin panel so data gets rerendered
+
 #### Notification Service
 
 Responsibilities:
