@@ -1,0 +1,157 @@
+version: '3.9'
+
+services:
+
+  # =========================
+  # BACKEND
+  # =========================
+
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "3000:3000"
+    environment:
+      MS_DB_URL: postgres://postgres:postgres@postgres:5432/microservices_db
+      JWT_SECRET: secret
+    volumes:
+    - ./api-gateway:/app
+    - /app/node_modules
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  auth-service:
+    build: ./auth-service
+    ports:
+      - "4000:4000"
+    environment:
+      MS_DB_URL: postgres://postgres:postgres@postgres:5432/microservices_db
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/auth_db
+      JWT_SECRET: secret
+    volumes:
+    - ./auth-service:/app
+    - /app/node_modules
+
+  realtime-gateway:
+    build: ./realtime-gateway
+    ports:
+      - "4500:4500"
+    environment:
+      JWT_SECRET: secret
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/rule_db
+      MS_DB_URL: postgres://postgres:postgres@postgres:5432/microservices_db
+    volumes:
+    - ./realtime-gateway:/app
+    - /app/node_modules
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  webhook-service:
+    build: ./webhook-service
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/rule_db
+      MS_DB_URL: postgres://postgres:postgres@postgres:5432/microservices_db
+    volumes:
+    - ./webhook-service:/app
+    - /app/node_modules
+    depends_on:
+      redis:
+        condition: service_healthy
+  
+  execution-service:
+    build: ./execution-service
+    ports:
+      - "5500:5500"
+    volumes:
+    - ./execution-service:/app
+    - ./execution-service/src/logs:/app/src/logs
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/rule_db
+      MS_DB_URL: postgres://postgres:postgres@postgres:5432/microservices_db
+  
+  rule-service:
+    build: ./rule-service
+    ports:
+      - "7000:7000"
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/rule_db
+      MS_DB_URL: postgres://postgres:postgres@postgres:5432/microservices_db
+    volumes:
+      - ./rule-service:/app
+      - ./rule-service/src/logs:/app/src/logs
+
+  notification-service:
+    build: ./notification-service
+    ports:
+      - "8000:8000"
+    environment:
+      MS_DB_URL: postgres://postgres:postgres@postgres:5432/microservices_db
+    volumes:
+      - ./notification-service:/app
+      - ./notification-service/src/logs:/app/src/logs
+  
+  user-service:
+    build: ./user-service
+    ports:
+      - "9000:9000"
+    environment:
+      MS_DB_URL: postgres://postgres:postgres@postgres:5432/microservices_db
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/user_db
+    volumes:
+      - ./user-service:/app
+      - ./user-service/src/logs:/app/src/logs
+  
+  # =========================
+  # DBS
+  # =========================
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+    - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    
+
+  postgres:
+    image: postgres:latest
+    container_name: backend-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+      - ./init-db:/docker-entrypoint-initdb.d
+
+
+  # =========================
+  # FRONTEND
+  # =========================
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm run dev
+    depends_on:
+      - api-gateway
+    
+volumes:
+  postgres_data:
+  pgadmin_data:    
+  redis_data:
+    

@@ -1,0 +1,164 @@
+from fastapi import FastAPI, status # type: ignore
+from pydantic import BaseModel # type: ignore
+from db.db import get_connection
+from src.routers import users
+from src.routers import alerts
+import asyncio
+import psutil
+import time
+import os
+import platform
+from datetime import datetime
+from db.ms import get_connection
+from urllib.request import Request
+
+app = FastAPI()
+
+@app.get("/health")
+async def root():
+    return {"message": "User Service running"}
+
+# =========================
+# SERVICE METRICS
+# =========================
+
+START_TIME = time.time()
+
+total_requests = 0
+last_request_at = None
+
+# =========================
+# REQUEST MIDDLEWARE
+# =========================
+
+@app.middleware("http")
+async def metrics_middleware(request: Request, call_next):
+    global total_requests
+    global last_request_at
+
+    total_requests += 1
+    last_request_at = datetime.utcnow()
+
+    response = await call_next(request)
+
+    return response
+
+def get_metrics():
+
+    process = psutil.Process(os.getpid())
+
+    memory_info = process.memory_info()
+
+    uptime_seconds = int(time.time() - START_TIME)
+
+    uptime_minutes = uptime_seconds / 60
+
+    requests_per_minute = (
+        total_requests / uptime_minutes
+        if uptime_minutes > 0
+        else total_requests
+    )
+
+    metrics = {
+        "cpu_usage": psutil.cpu_percent(),
+
+        "memory_usage_mb":
+            memory_info.rss / 1024 / 1024,
+
+        "rss":
+            memory_info.rss,
+
+        "heap_used":
+            memory_info.vms,
+
+        "uptime_seconds":
+            uptime_seconds,
+
+        "total_requests":
+            total_requests,
+
+        "requests_per_min":
+            round(requests_per_minute, 2),
+
+        "last_request_at":
+            last_request_at,
+
+        "pid":
+            os.getpid(),
+
+        "platform":
+            platform.system(),
+
+        "platform_version":
+            platform.version(),
+
+        "python_version":
+            platform.python_version(),
+
+        "active_connections":
+            len(process.net_connections())
+    }
+
+    return metrics
+
+# =========================
+# HEARTBEAT LOOP
+# =========================
+
+async def update_metrics_loop():
+
+    while True:
+
+        metrics = get_metrics()
+
+
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            UPDATE microservices
+            SET
+                cpu_usage = %s,
+                memory_usage_mb = %s,
+                rss = %s,
+                heapused = %s,
+                uptime_seconds = %s,
+                total_requests = %s,
+                requests_per_min = %s,
+                last_request_at = %s,
+                pid = %s,
+                platform = %s,
+                version = %s,
+                active_connections = %s
+            WHERE service_name = 'user-service'
+        """, (
+            metrics['cpu_usage'],
+            metrics['memory_usage_mb'],
+            metrics['rss'],
+            metrics['heap_used'],
+            metrics['uptime_seconds'],
+            metrics['total_requests'],
+            metrics['requests_per_min'],
+            metrics['last_request_at'],
+            metrics['pid'],
+            metrics['platform'],
+            metrics['python_version'],
+            metrics['active_connections'],
+        ))
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+        await asyncio.sleep(10)
+
+@app.on_event("startup")
+async def startup_event():
+    
+    asyncio.create_task(update_metrics_loop())
+
+app.include_router(users.router, prefix="/users")
+app.include_router(alerts.router, prefix="/alerts")
+
+if __name__ == "__main__":
+    import uvicorn # type: ignore
+    uvicorn.run("src.server:app", host="0.0.0.0", port=9000, reload=True)

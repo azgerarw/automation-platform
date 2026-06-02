@@ -1,0 +1,456 @@
+2026-04-11 16:37:11 - INFO - Health check endpoint called
+2026-04-11 16:37:27 - INFO - Event received
+2026-04-11 18:05:13 - INFO - Health check endpoint called - {'extra': {'extra_info': 'This is additional info for the health check log'}}
+2026-04-11 18:17:24 - INFO - Health check endpoint called - {'extra': {'correlation_id': '12345', 'method': 'GET', 'url': '/health', 'status_code': 200, 'elapsed_time': 4.76837158203125e-07, 'extra_info': 'This is additional info for the health check log'}}
+2026-04-12 17:45:44 - INFO - Event received - {'extra': {'correlation_id': '8b9d0c42-4c9c-42d8-b23c-b4368410bf75', 'execution_id': 'ac51666c-eea4-4b27-85f3-92b9e2bf5b21', 'event': 'payment.succeeded', 'user_id': 3}}
+2026-04-12 17:47:33 - INFO - Event received - {'extra': {'correlation_id': 'b4f95616-a430-4914-9960-ebba5e352d6f', 'execution_id': '1efd8696-36a0-4fc0-b4ee-965fcf71d80c', 'event': 'payment.succeeded', 'user_id': 3}}
+2026-04-12 18:42:47 - INFO - Health check endpoint called - {'extra': {'correlation_id': '12345', 'method': 'GET', 'url': '/health', 'status_code': 200, 'elapsed_time': 2.384185791015625e-07, 'extra_info': 'This is additional info for the health check log'}}
+2026-04-12 18:45:02 - INFO - Starting to listen for events... - {}
+2026-04-12 18:45:13 - INFO - Event received - {'extra': {'correlation_id': '827660e1-1650-472c-b98b-0e01fc3c30e5', 'execution_id': '4042a2cf-433e-43a3-a19c-79e496bace1f', 'event': 'payment.succeeded', 'user_id': None}}
+2026-04-12 18:51:02 - INFO - Starting to listen for events... - {}
+2026-04-12 19:04:02 - INFO - Starting to listen for events... - {}
+2026-04-12 19:04:22 - INFO - Event received - {'extra': {'correlation_id': 'a813a5ec-ed5f-4c6e-9d76-1e26c53f26a2', 'execution_id': '2bc841b3-83a3-4cf4-b5ba-ece036f733e0', 'event': 'payment.succeeded', 'user_id': None}}
+2026-04-12 19:07:17 - INFO - Starting to listen for events... - {}
+2026-04-18 07:58:40 - INFO - Starting to listen for events... - {}
+2026-04-18 08:01:41 - INFO - Event received - {'extra': {'correlation_id': '2fe65d26-b484-434c-b360-71fc64b64a01', 'execution_id': 'cd6b4d51-6637-4a14-8223-030bd350574f', 'event': 'payment.succeeded', 'user_id': None}}
+2026-04-18 08:12:18 - INFO - Starting to listen for events... - {}
+2026-04-18 08:15:26 - INFO - Starting to listen for events... - {}
+2026-04-18 08:16:11 - INFO - Starting to listen for events... - {}
+2026-04-18 08:18:45 - INFO - Starting to listen for events... - {}
+2026-04-18 09:03:10 - INFO - Starting to listen for events... - {}
+2026-04-18 09:27:47 - INFO - Starting to listen for events... - {}
+2026-04-18 13:38:50 - INFO - Starting to listen for events... - {}
+2026-04-18 13:45:02 - INFO - Starting to listen for events... - {}
+2026-04-18 13:46:12 - INFO - Starting to listen for events... - {}
+2026-04-18 13:47:27 - INFO - Starting to listen for events... - {}
+2026-04-18 13:48:29 - INFO - Starting to listen for events... - {}
+2026-04-18 13:51:02 - INFO - Starting to listen for events... - {}
+2026-04-18 13:51:09 - INFO - Event received - {'extra': {'correlation_id': 'c6f1d8fe-45b5-4eac-8994-23930ebd803d', 'execution_id': '658f3cf8-b7d1-40b5-96cf-4efd7d1261f0', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-04-18 13:52:19 - INFO - Event received - {'extra': {'correlation_id': 'c6f1d8fe-45b5-4eac-8994-23930ebd803d', 'execution_id': '658f3cf8-b7d1-40b5-96cf-4efd7d1261f0', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-04-18 14:00:29 - INFO - Starting to listen for events... - {}
+2026-04-18 14:00:41 - INFO - Event received - {'extra': {'correlation_id': 'c6f1d8fe-45b5-4eac-8994-23930ebd803d', 'execution_id': '5cf1283d-64a3-4650-8e8c-391add5e5559', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-04-18 14:19:33 - INFO - Starting to listen for events... - {}
+2026-04-18 14:19:46 - INFO - Event received - {'extra': {'correlation_id': 'c6f1d8fe-45b5-4eac-8994-23930ebd803d', 'execution_id': '065471e0-8db3-439b-ad70-4b1a5d2ddb9d', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-04-18 14:27:05 - INFO - Starting to listen for events... - {}
+2026-04-18 14:27:18 - INFO - Event received - {'extra': {'correlation_id': 'f7580d65-e92d-442c-9874-b72bdb8128d1', 'execution_id': '2f3a2e1d-7ea6-463a-9c39-f210ac9e967b', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-04-18 14:28:20 - INFO - Event received - {'extra': {'correlation_id': 'f7580d65-e92d-442c-9874-b72bdb8128d1', 'execution_id': 'df4860ee-e274-4b2d-b4bd-c3576627ca4f', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-04-18 14:30:40 - INFO - Starting to listen for events... - {}
+2026-04-18 14:30:48 - INFO - Event received - {'extra': {'correlation_id': 'f7580d65-e92d-442c-9874-b72bdb8128d1', 'execution_id': 'aecf77b7-6448-4f83-8e7f-adb348e0b34b', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-04-18 18:16:02 - INFO - Starting to listen for events... - {}
+2026-04-18 18:46:40 - INFO - Starting to listen for events... - {}
+2026-04-18 18:48:32 - INFO - Starting to listen for events... - {}
+2026-04-18 18:48:39 - INFO - Event received - {'extra': {'correlation_id': 'cd6ca451-e6d0-47d7-b556-a47e37009d57', 'execution_id': '64cdc60c-c52c-4c55-89c4-fb1db6da990a', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-04-18 18:50:09 - INFO - Event received - {'extra': {'correlation_id': 'cd6ca451-e6d0-47d7-b556-a47e37009d57', 'execution_id': '88c7715c-bac6-4e85-b297-66011ab73512', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-04-19 09:00:11 - INFO - Starting to listen for events... - {}
+2026-04-19 09:02:51 - INFO - Starting to listen for events... - {}
+2026-04-19 09:08:47 - INFO - Starting to listen for events... - {}
+2026-04-19 09:25:20 - INFO - Starting to listen for events... - {}
+2026-04-19 13:58:01 - INFO - Starting to listen for events... - {}
+2026-04-19 14:32:22 - INFO - Starting to listen for events... - {}
+2026-04-19 14:58:59 - INFO - Starting to listen for events... - {}
+2026-04-19 15:07:24 - INFO - Starting to listen for events... - {}
+2026-04-19 15:27:05 - INFO - Starting to listen for events... - {}
+2026-04-19 15:31:51 - INFO - Starting to listen for events... - {}
+2026-04-25 08:22:41 - INFO - Starting to listen for events... - {}
+2026-04-25 08:33:18 - INFO - Starting to listen for events... - {}
+2026-04-25 09:17:36 - INFO - Starting to listen for events... - {}
+2026-04-25 13:17:39 - INFO - Starting to listen for events... - {}
+2026-04-25 13:40:21 - INFO - Starting to listen for events... - {}
+2026-04-25 15:55:46 - INFO - Starting to listen for events... - {}
+2026-04-25 16:09:25 - INFO - Starting to listen for events... - {}
+2026-04-25 16:38:36 - INFO - Starting to listen for events... - {}
+2026-04-25 17:56:35 - INFO - Starting to listen for events... - {}
+2026-04-26 07:51:39 - INFO - Starting to listen for events... - {}
+2026-04-26 08:47:21 - INFO - Starting to listen for events... - {}
+2026-04-26 08:59:45 - INFO - Starting to listen for events... - {}
+2026-04-26 09:14:06 - INFO - Starting to listen for events... - {}
+2026-04-26 09:18:22 - INFO - Starting to listen for events... - {}
+2026-04-26 09:21:17 - INFO - Starting to listen for events... - {}
+2026-04-26 09:23:59 - INFO - Starting to listen for events... - {}
+2026-04-26 09:25:15 - INFO - Starting to listen for events... - {}
+2026-04-26 09:28:48 - INFO - Starting to listen for events... - {}
+2026-04-26 09:46:54 - INFO - Starting to listen for events... - {}
+2026-04-26 09:52:19 - INFO - Starting to listen for events... - {}
+2026-04-26 13:23:31 - INFO - Starting to listen for events... - {}
+2026-04-26 13:49:19 - INFO - Starting to listen for events... - {}
+2026-04-26 15:22:11 - INFO - Starting to listen for events... - {}
+2026-04-26 16:10:12 - INFO - Starting to listen for events... - {}
+2026-05-01 10:55:03 - INFO - Starting to listen for events... - {}
+2026-05-01 14:01:42 - INFO - Starting to listen for events... - {}
+2026-05-01 15:01:43 - INFO - Starting to listen for events... - {}
+2026-05-01 17:01:13 - INFO - Starting to listen for events... - {}
+2026-05-01 17:16:45 - INFO - Starting to listen for events... - {}
+2026-05-01 17:45:02 - INFO - Starting to listen for events... - {}
+2026-05-01 17:52:35 - INFO - Starting to listen for events... - {}
+2026-05-01 17:58:48 - INFO - Starting to listen for events... - {}
+2026-05-01 18:02:13 - INFO - Starting to listen for events... - {}
+2026-05-01 18:04:53 - INFO - Starting to listen for events... - {}
+2026-05-02 09:15:21 - INFO - Starting to listen for events... - {}
+2026-05-02 10:07:50 - INFO - Starting to listen for events... - {}
+2026-05-02 10:25:40 - INFO - Starting to listen for events... - {}
+2026-05-02 11:13:41 - INFO - Starting to listen for events... - {}
+2026-05-02 11:16:16 - INFO - Starting to listen for events... - {}
+2026-05-02 11:26:21 - INFO - Starting to listen for events... - {}
+2026-05-02 11:35:54 - INFO - Starting to listen for events... - {}
+2026-05-02 13:16:51 - INFO - Starting to listen for events... - {}
+2026-05-02 13:30:39 - INFO - Starting to listen for events... - {}
+2026-05-02 13:39:42 - INFO - Starting to listen for events... - {}
+2026-05-02 13:54:54 - INFO - Starting to listen for events... - {}
+2026-05-02 13:59:26 - INFO - Starting to listen for events... - {}
+2026-05-02 18:38:28 - INFO - Starting to listen for events... - {}
+2026-05-03 07:06:19 - INFO - Starting to listen for events... - {}
+2026-05-03 07:09:18 - INFO - Starting to listen for events... - {}
+2026-05-03 07:10:50 - INFO - Starting to listen for events... - {}
+2026-05-03 07:14:49 - INFO - Starting to listen for events... - {}
+2026-05-03 07:18:39 - INFO - Starting to listen for events... - {}
+2026-05-03 08:49:39 - INFO - Starting to listen for events... - {}
+2026-05-03 08:51:22 - INFO - Starting to listen for events... - {}
+2026-05-03 09:03:19 - INFO - Starting to listen for events... - {}
+2026-05-03 09:06:42 - INFO - Starting to listen for events... - {}
+2026-05-03 10:37:14 - INFO - Starting to listen for events... - {}
+2026-05-03 11:43:36 - INFO - Starting to listen for events... - {}
+2026-05-03 12:06:33 - INFO - Starting to listen for events... - {}
+2026-05-03 14:24:51 - INFO - Starting to listen for events... - {}
+2026-05-03 15:27:18 - INFO - Starting to listen for events... - {}
+2026-05-03 15:28:08 - INFO - Starting to listen for events... - {}
+2026-05-03 15:37:02 - INFO - Starting to listen for events... - {}
+2026-05-03 15:42:22 - INFO - Starting to listen for events... - {}
+2026-05-03 15:45:04 - INFO - Starting to listen for events... - {}
+2026-05-03 15:49:03 - INFO - Starting to listen for events... - {}
+2026-05-03 15:52:23 - INFO - Starting to listen for events... - {}
+2026-05-03 16:26:58 - INFO - Starting to listen for events... - {}
+2026-05-03 16:35:54 - INFO - Starting to listen for events... - {}
+2026-05-03 16:40:25 - INFO - Starting to listen for events... - {}
+2026-05-03 17:28:55 - INFO - Starting to listen for events... - {}
+2026-05-09 08:23:12 - INFO - Starting to listen for events... - {}
+2026-05-09 08:46:01 - INFO - Starting to listen for events... - {}
+2026-05-09 09:05:31 - INFO - Starting to listen for events... - {}
+2026-05-09 09:23:36 - INFO - Starting to listen for events... - {}
+2026-05-09 09:36:35 - INFO - Starting to listen for events... - {}
+2026-05-09 11:10:48 - INFO - Starting to listen for events... - {}
+2026-05-09 11:11:04 - INFO - Starting to listen for events... - {}
+2026-05-09 11:15:28 - INFO - Starting to listen for events... - {}
+2026-05-09 12:00:40 - INFO - Starting to listen for events... - {}
+2026-05-09 12:12:26 - INFO - Starting to listen for events... - {}
+2026-05-09 13:57:05 - INFO - Starting to listen for events... - {}
+2026-05-09 14:03:59 - INFO - Starting to listen for events... - {}
+2026-05-09 14:11:42 - INFO - Starting to listen for events... - {}
+2026-05-09 14:27:38 - INFO - Starting to listen for events... - {}
+2026-05-09 15:06:51 - INFO - Event received - {'extra': {'correlation_id': '3b50b5d0-82f8-4f81-94b0-030a73f76d95', 'execution_id': '091dc4f2-e1e2-49ec-b6a2-4f5d2f9dfb4b', 'event': 'payment.failed', 'user_id': 1}}
+2026-05-09 15:07:51 - INFO - Starting to listen for events... - {}
+2026-05-09 15:08:54 - INFO - Event received - {'extra': {'correlation_id': '3b50b5d0-82f8-4f81-94b0-030a73f76d95', 'execution_id': 'e23bb13a-8c69-4d71-a486-2f8359c6fcd8', 'event': 'payment.failed', 'user_id': 1}}
+2026-05-09 15:10:07 - INFO - Event received - {'extra': {'correlation_id': '3b50b5d0-82f8-4f81-94b0-030a73f76d95', 'execution_id': 'c7871175-b0f2-4a60-821f-49784a4e3689', 'event': 'payment.failed', 'user_id': 1}}
+2026-05-09 15:16:14 - INFO - Starting to listen for events... - {}
+2026-05-09 15:16:30 - INFO - Event received - {'extra': {'correlation_id': '3b50b5d0-82f8-4f81-94b0-030a73f76d95', 'execution_id': '664f4cd4-0192-428a-ae56-c7270c2b3da5', 'event': 'payment.failed', 'user_id': 1}}
+2026-05-09 15:19:39 - INFO - Event received - {'extra': {'correlation_id': '3b50b5d0-82f8-4f81-94b0-030a73f76d95', 'execution_id': 'daea348e-07d2-48c5-b4d9-28a53e4d36c4', 'event': 'payment.failed', 'user_id': 1}}
+2026-05-09 15:21:29 - INFO - Starting to listen for events... - {}
+2026-05-09 15:21:56 - INFO - Starting to listen for events... - {}
+2026-05-09 15:21:58 - INFO - Starting to listen for events... - {}
+2026-05-09 15:22:09 - INFO - Event received - {'extra': {'correlation_id': '3b50b5d0-82f8-4f81-94b0-030a73f76d95', 'execution_id': '07788d41-60c0-4c24-a8a2-27fcbb8435c9', 'event': 'payment.failed', 'user_id': 1}}
+2026-05-09 15:22:55 - INFO - Starting to listen for events... - {}
+2026-05-09 15:24:00 - INFO - Starting to listen for events... - {}
+2026-05-09 15:24:51 - INFO - Starting to listen for events... - {}
+2026-05-09 15:26:02 - INFO - Starting to listen for events... - {}
+2026-05-09 15:30:27 - INFO - Event received - {'extra': {'correlation_id': '3b50b5d0-82f8-4f81-94b0-030a73f76d95', 'execution_id': '6815a750-d25b-46b9-b8b2-e61d2f1425f3', 'event': 'payment.failed', 'user_id': 1}}
+2026-05-09 15:32:33 - INFO - Starting to listen for events... - {}
+2026-05-09 15:32:49 - INFO - Starting to listen for events... - {}
+2026-05-09 15:38:27 - INFO - Starting to listen for events... - {}
+2026-05-09 15:38:37 - INFO - Event received - {'extra': {'correlation_id': '3b50b5d0-82f8-4f81-94b0-030a73f76d95', 'execution_id': '91c4dce8-8607-4f76-9660-eeb07b305dee', 'event': 'payment.failed', 'user_id': 1}}
+2026-05-09 15:45:45 - INFO - Starting to listen for events... - {}
+2026-05-09 15:56:50 - INFO - Starting to listen for events... - {}
+2026-05-09 15:57:20 - INFO - Starting to listen for events... - {}
+2026-05-09 15:57:37 - INFO - Starting to listen for events... - {}
+2026-05-09 15:57:41 - INFO - Starting to listen for events... - {}
+2026-05-09 15:57:47 - INFO - Event received - {'extra': {'correlation_id': '3b50b5d0-82f8-4f81-94b0-030a73f76d95', 'execution_id': '368e330c-9292-490c-aea6-38afd705f040', 'event': 'payment.failed', 'user_id': 1}}
+2026-05-09 15:58:18 - INFO - Event received - {'extra': {'correlation_id': '3b50b5d0-82f8-4f81-94b0-030a73f76d95', 'execution_id': 'c0c961e2-1f53-4e1a-919a-6940cf2a88eb', 'event': 'payment.failed', 'user_id': 1}}
+2026-05-09 15:59:03 - INFO - Starting to listen for events... - {}
+2026-05-09 15:59:06 - INFO - Event received - {'extra': {'correlation_id': '3b50b5d0-82f8-4f81-94b0-030a73f76d95', 'execution_id': 'da093cf3-bad7-4760-a366-7ee7e2373c20', 'event': 'payment.failed', 'user_id': 1}}
+2026-05-10 07:51:59 - INFO - Starting to listen for events... - {}
+2026-05-10 12:32:57 - INFO - Starting to listen for events... - {}
+2026-05-10 12:46:59 - INFO - Starting to listen for events... - {}
+2026-05-10 12:50:14 - INFO - Starting to listen for events... - {}
+2026-05-10 12:50:54 - INFO - Starting to listen for events... - {}
+2026-05-10 12:51:07 - INFO - Starting to listen for events... - {}
+2026-05-10 12:51:18 - INFO - Starting to listen for events... - {}
+2026-05-10 12:51:55 - INFO - Starting to listen for events... - {}
+2026-05-10 13:13:07 - INFO - Starting to listen for events... - {}
+2026-05-10 13:13:16 - INFO - Starting to listen for events... - {}
+2026-05-10 13:14:56 - INFO - Starting to listen for events... - {}
+2026-05-10 13:15:39 - INFO - Starting to listen for events... - {}
+2026-05-10 13:16:35 - INFO - Starting to listen for events... - {}
+2026-05-10 13:16:48 - INFO - Starting to listen for events... - {}
+2026-05-10 13:19:19 - INFO - Event received - {'extra': {'correlation_id': '9553ae0f-1df9-43ec-8a10-52f182487d52', 'execution_id': 'c31e456e-f0a3-4eff-9f1d-ac5ed1637cae', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-10 13:24:58 - INFO - Starting to listen for events... - {}
+2026-05-10 13:25:14 - INFO - Starting to listen for events... - {}
+2026-05-10 13:25:18 - INFO - Event received - {'extra': {'correlation_id': '9553ae0f-1df9-43ec-8a10-52f182487d52', 'execution_id': '346850df-6724-42e9-bd0e-f4c9190784b1', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-10 13:29:25 - INFO - Event received - {'extra': {'correlation_id': '9553ae0f-1df9-43ec-8a10-52f182487d52', 'execution_id': '2831846f-d8ec-41e8-87e2-c15e94ee61dd', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-10 13:31:59 - INFO - Event received - {'extra': {'correlation_id': '9553ae0f-1df9-43ec-8a10-52f182487d52', 'execution_id': '0976e935-4c65-4ea6-9f06-e6ad859f73e2', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-10 13:33:17 - INFO - Event received - {'extra': {'correlation_id': '9553ae0f-1df9-43ec-8a10-52f182487d52', 'execution_id': 'a65fdade-4d73-4258-a5d0-fc1653e0851b', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-10 13:33:36 - INFO - Event received - {'extra': {'correlation_id': '9553ae0f-1df9-43ec-8a10-52f182487d52', 'execution_id': '2c3d1735-9fc0-42af-a534-f44cc2b89093', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-10 14:51:44 - INFO - Starting to listen for events... - {}
+2026-05-10 14:53:28 - INFO - Event received - {'extra': {'correlation_id': 'd2db46b5-c401-4138-a6e2-3fe735c423eb', 'execution_id': '21c82cb6-b52e-4181-a41f-2f874374e0c5', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-10 14:56:49 - INFO - Event received - {'extra': {'correlation_id': 'd2db46b5-c401-4138-a6e2-3fe735c423eb', 'execution_id': '160a3cee-03e6-4f01-9f6e-530de6c9513c', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-10 15:00:57 - INFO - Event received - {'extra': {'correlation_id': 'd2db46b5-c401-4138-a6e2-3fe735c423eb', 'execution_id': 'ba56237c-4e86-47ed-98c9-e1b013b20d08', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-10 15:04:57 - INFO - Event received - {'extra': {'correlation_id': 'd2db46b5-c401-4138-a6e2-3fe735c423eb', 'execution_id': '06dab63c-7e4b-44b3-8872-f80345892afb', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-10 15:08:18 - INFO - Event received - {'extra': {'correlation_id': 'd2db46b5-c401-4138-a6e2-3fe735c423eb', 'execution_id': '9602708e-ab1c-4072-a65f-5bd037c74faa', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-10 15:12:41 - INFO - Event received - {'extra': {'correlation_id': 'd2db46b5-c401-4138-a6e2-3fe735c423eb', 'execution_id': 'e17c039b-474e-4db0-84ad-f514503d24df', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-10 15:15:15 - INFO - Event received - {'extra': {'correlation_id': 'd2db46b5-c401-4138-a6e2-3fe735c423eb', 'execution_id': 'a574da6d-1f0f-4177-854c-559a92672a99', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-10 15:21:33 - INFO - Starting to listen for events... - {}
+2026-05-10 15:21:39 - INFO - Starting to listen for events... - {}
+2026-05-10 15:21:51 - INFO - Event received - {'extra': {'correlation_id': 'd2db46b5-c401-4138-a6e2-3fe735c423eb', 'execution_id': '96065e07-ef67-475e-8940-4c99d224bdeb', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-10 15:31:47 - INFO - Event received - {'extra': {'correlation_id': 'd2db46b5-c401-4138-a6e2-3fe735c423eb', 'execution_id': '002cc214-a79b-4d2a-b727-8b3e921f08f8', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-10 15:33:36 - INFO - Event received - {'extra': {'correlation_id': 'd2db46b5-c401-4138-a6e2-3fe735c423eb', 'execution_id': '7cc6ebaa-f37d-4798-add3-48d61cc42807', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-10 17:32:04 - INFO - Starting to listen for events... - {}
+2026-05-10 17:34:28 - INFO - Event received - {'extra': {'correlation_id': '27b13a73-194d-4094-a944-b5a84e0b733d', 'execution_id': '1ab2f532-01ca-47fe-937b-ea343b5737be', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-10 17:35:19 - INFO - Event received - {'extra': {'correlation_id': '27b13a73-194d-4094-a944-b5a84e0b733d', 'execution_id': 'eeb1b0ab-ed05-440d-a713-27fee441f46c', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-10 17:36:06 - INFO - Event received - {'extra': {'correlation_id': '27b13a73-194d-4094-a944-b5a84e0b733d', 'execution_id': 'a369ed7d-20ad-4118-ab9e-e8302b511ad5', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-16 07:57:19 - INFO - Starting to listen for events... - {}
+2026-05-16 08:55:04 - INFO - Starting to listen for events... - {}
+2026-05-16 08:55:58 - INFO - Starting to listen for events... - {}
+2026-05-16 08:56:12 - INFO - Starting to listen for events... - {}
+2026-05-16 09:15:16 - INFO - Starting to listen for events... - {}
+2026-05-16 12:32:11 - INFO - Starting to listen for events... - {}
+2026-05-16 13:40:02 - INFO - Starting to listen for events... - {}
+2026-05-16 14:43:00 - INFO - Starting to listen for events... - {}
+2026-05-16 15:13:00 - INFO - Event received - {'extra': {'correlation_id': '75a260e8-ab19-4e73-8f2c-82bdcbae1d37', 'execution_id': '0c842a9b-2a75-4e7a-b62b-f287d92328c2', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-16 15:15:46 - INFO - Starting to listen for events... - {}
+2026-05-16 15:16:18 - INFO - Event received - {'extra': {'correlation_id': '75a260e8-ab19-4e73-8f2c-82bdcbae1d37', 'execution_id': '37d915d1-f91c-423d-9da4-090efb448ada', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-16 15:17:25 - INFO - Event received - {'extra': {'correlation_id': '75a260e8-ab19-4e73-8f2c-82bdcbae1d37', 'execution_id': '10a348eb-ad86-44f3-8fd6-e50d990bdbc3', 'event': 'user.loggdin', 'user_id': 1}}
+2026-05-16 15:20:19 - INFO - Event received - {'extra': {'correlation_id': '75a260e8-ab19-4e73-8f2c-82bdcbae1d37', 'execution_id': '6130d8cf-ad3a-4ccc-8152-3301ca5df086', 'event': 'user.loggedin', 'user_id': 1}}
+2026-05-16 15:37:31 - INFO - Event received - {'extra': {'correlation_id': '75a260e8-ab19-4e73-8f2c-82bdcbae1d37', 'execution_id': '3af92f00-9a1f-4d32-94cc-abedd31c8613', 'event': 'user.loggedin', 'user_id': 1}}
+2026-05-16 15:39:21 - INFO - Event received - {'extra': {'correlation_id': '75a260e8-ab19-4e73-8f2c-82bdcbae1d37', 'execution_id': '4b8748aa-ef43-4e4a-92e8-bdf228789190', 'event': 'user.loggedin', 'user_id': 1}}
+2026-05-16 15:39:59 - INFO - Event received - {'extra': {'correlation_id': '75a260e8-ab19-4e73-8f2c-82bdcbae1d37', 'execution_id': 'fba62a2e-82af-4b1c-86c3-4b46bb69a83d', 'event': 'user.loggedin', 'user_id': 1}}
+2026-05-16 16:32:41 - INFO - Starting to listen for events... - {}
+2026-05-17 06:18:08 - INFO - Starting to listen for events... - {}
+2026-05-17 07:43:01 - INFO - Starting to listen for events... - {}
+2026-05-17 07:59:16 - INFO - Starting to listen for events... - {}
+2026-05-17 08:11:28 - INFO - Starting to listen for events... - {}
+2026-05-17 08:17:10 - INFO - Starting to listen for events... - {}
+2026-05-17 08:17:55 - INFO - Starting to listen for events... - {}
+2026-05-17 08:51:46 - INFO - Starting to listen for events... - {}
+2026-05-17 09:37:05 - INFO - Starting to listen for events... - {}
+2026-05-17 10:46:56 - INFO - Starting to listen for events... - {}
+2026-05-17 10:49:29 - INFO - Starting to listen for events... - {}
+2026-05-17 10:49:34 - INFO - Starting to listen for events... - {}
+2026-05-17 10:53:00 - INFO - Starting to listen for events... - {}
+2026-05-17 10:53:22 - INFO - Starting to listen for events... - {}
+2026-05-17 11:00:10 - INFO - Starting to listen for events... - {}
+2026-05-17 11:00:33 - INFO - Starting to listen for events... - {}
+2026-05-17 11:03:41 - INFO - Starting to listen for events... - {}
+2026-05-17 11:03:50 - INFO - Starting to listen for events... - {}
+2026-05-17 11:05:53 - INFO - Event received - {'extra': {'correlation_id': '816b6fb9-af9e-4a04-8f52-8f954f56bc79', 'execution_id': '81016eef-c306-4ab7-815c-b91f035d7dbd', 'event': 'user.loggedin', 'user_id': 1}}
+2026-05-17 11:06:28 - INFO - Event received - {'extra': {'correlation_id': '816b6fb9-af9e-4a04-8f52-8f954f56bc79', 'execution_id': '5ebf4afe-2071-448d-b118-217130acf84b', 'event': 'user.loggedin', 'user_id': 1}}
+2026-05-17 11:08:08 - INFO - Event received - {'extra': {'correlation_id': '816b6fb9-af9e-4a04-8f52-8f954f56bc79', 'execution_id': '70b05c2f-a881-4d29-b0b6-a61650921fb5', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-17 11:10:34 - INFO - Starting to listen for events... - {}
+2026-05-17 11:17:03 - INFO - Starting to listen for events... - {}
+2026-05-17 11:25:45 - INFO - Starting to listen for events... - {}
+2026-05-17 11:26:54 - INFO - Starting to listen for events... - {}
+2026-05-17 11:35:45 - INFO - Starting to listen for events... - {}
+2026-05-17 11:37:07 - INFO - Starting to listen for events... - {}
+2026-05-17 12:08:09 - INFO - Event received - {'extra': {'correlation_id': 'fe6b3b18-4f32-47ad-a615-ab95e568c243', 'execution_id': 'd7ee6b9a-3096-4f11-9ef9-4c7b9ac4c00b', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-17 13:30:07 - INFO - Starting to listen for events... - {}
+2026-05-17 13:44:43 - INFO - Event received - {'extra': {'correlation_id': '98788933-da91-4d86-bce7-6a92fcb9e6fa', 'execution_id': '6eb73a56-6948-43ef-9f86-a1ae0bb3900e', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-17 13:46:10 - INFO - Event received - {'extra': {'correlation_id': '98788933-da91-4d86-bce7-6a92fcb9e6fa', 'execution_id': 'cda61549-da7f-4e96-bf95-2112547557d4', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-17 13:51:29 - INFO - Event received - {'extra': {'correlation_id': '98788933-da91-4d86-bce7-6a92fcb9e6fa', 'execution_id': '6ccb3122-69e6-4707-b803-37521de01233', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-17 13:53:56 - INFO - Event received - {'extra': {'correlation_id': '98788933-da91-4d86-bce7-6a92fcb9e6fa', 'execution_id': 'e2d70465-d0d3-4df7-8466-c0c2e7cde541', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-17 14:05:11 - INFO - Event received - {'extra': {'correlation_id': '98788933-da91-4d86-bce7-6a92fcb9e6fa', 'execution_id': 'bc8bb449-bd61-4fa2-b95c-010edd5e5033', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-17 14:23:15 - INFO - Event received - {'extra': {'correlation_id': '98788933-da91-4d86-bce7-6a92fcb9e6fa', 'execution_id': 'be5eaacc-e4bb-4b9d-8b98-cbed6f577332', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-17 14:29:28 - INFO - Event received - {'extra': {'correlation_id': '98788933-da91-4d86-bce7-6a92fcb9e6fa', 'execution_id': '32372a72-ce54-4457-8524-4f19095c3e4e', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-17 14:30:38 - INFO - Event received - {'extra': {'correlation_id': '98788933-da91-4d86-bce7-6a92fcb9e6fa', 'execution_id': '7e093f87-2bc4-43ab-bc17-53ceeddeae66', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-17 14:31:17 - INFO - Event received - {'extra': {'correlation_id': '98788933-da91-4d86-bce7-6a92fcb9e6fa', 'execution_id': '6e490379-7923-461f-b7aa-fea4d2bea2a6', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-17 14:32:35 - INFO - Event received - {'extra': {'correlation_id': '98788933-da91-4d86-bce7-6a92fcb9e6fa', 'execution_id': 'da210541-b4e1-4d24-8363-9074c3546991', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-17 15:24:33 - INFO - Starting to listen for events... - {}
+2026-05-17 17:13:43 - INFO - Starting to listen for events... - {}
+2026-05-17 17:47:17 - INFO - Starting to listen for events... - {}
+2026-05-17 17:47:26 - INFO - Starting to listen for events... - {}
+2026-05-17 17:48:55 - INFO - Starting to listen for events... - {}
+2026-05-17 17:50:30 - INFO - Starting to listen for events... - {}
+2026-05-17 17:51:25 - INFO - Starting to listen for events... - {}
+2026-05-17 18:20:32 - INFO - Starting to listen for events... - {}
+2026-05-17 18:23:24 - INFO - Starting to listen for events... - {}
+2026-05-17 18:23:34 - INFO - Starting to listen for events... - {}
+2026-05-17 18:24:28 - INFO - Starting to listen for events... - {}
+2026-05-17 18:35:09 - INFO - Starting to listen for events... - {}
+2026-05-17 18:50:41 - INFO - Starting to listen for events... - {}
+2026-05-17 19:07:14 - INFO - Starting to listen for events... - {}
+2026-05-17 19:07:17 - INFO - Starting to listen for events... - {}
+2026-05-17 19:10:50 - INFO - Starting to listen for events... - {}
+2026-05-23 07:05:40 - INFO - Starting to listen for events... - {}
+2026-05-23 07:42:30 - INFO - Starting to listen for events... - {}
+2026-05-23 08:26:19 - INFO - Starting to listen for events... - {}
+2026-05-23 08:26:27 - INFO - Starting to listen for events... - {}
+2026-05-23 09:19:28 - INFO - Starting to listen for events... - {}
+2026-05-23 09:26:15 - INFO - Starting to listen for events... - {}
+2026-05-23 12:51:07 - INFO - Starting to listen for events... - {}
+2026-05-23 13:28:51 - INFO - Starting to listen for events... - {}
+2026-05-23 13:32:49 - INFO - Starting to listen for events... - {}
+2026-05-23 13:32:52 - INFO - Starting to listen for events... - {}
+2026-05-23 13:33:18 - INFO - Starting to listen for events... - {}
+2026-05-23 13:33:24 - INFO - Starting to listen for events... - {}
+2026-05-23 13:33:37 - INFO - Starting to listen for events... - {}
+2026-05-23 13:33:43 - INFO - Starting to listen for events... - {}
+2026-05-23 13:39:41 - INFO - Starting to listen for events... - {}
+2026-05-23 13:52:01 - INFO - Starting to listen for events... - {}
+2026-05-23 13:54:08 - INFO - Starting to listen for events... - {}
+2026-05-23 14:04:53 - INFO - Starting to listen for events... - {}
+2026-05-23 14:10:59 - INFO - Starting to listen for events... - {}
+2026-05-23 14:12:11 - INFO - Starting to listen for events... - {}
+2026-05-23 14:13:11 - INFO - Starting to listen for events... - {}
+2026-05-23 14:14:01 - INFO - Starting to listen for events... - {}
+2026-05-23 14:14:27 - INFO - Starting to listen for events... - {}
+2026-05-23 14:15:17 - INFO - Starting to listen for events... - {}
+2026-05-23 14:15:22 - INFO - Starting to listen for events... - {}
+2026-05-23 14:40:44 - INFO - Starting to listen for events... - {}
+2026-05-23 14:41:39 - INFO - Starting to listen for events... - {}
+2026-05-23 14:41:55 - INFO - Starting to listen for events... - {}
+2026-05-23 14:42:05 - INFO - Starting to listen for events... - {}
+2026-05-23 14:42:16 - INFO - Starting to listen for events... - {}
+2026-05-23 17:27:06 - INFO - Starting to listen for events... - {}
+2026-05-23 17:49:21 - INFO - Starting to listen for events... - {}
+2026-05-23 18:09:05 - INFO - Starting to listen for events... - {}
+2026-05-23 18:09:11 - INFO - Starting to listen for events... - {}
+2026-05-23 18:11:49 - INFO - Starting to listen for events... - {}
+2026-05-23 18:12:01 - INFO - Starting to listen for events... - {}
+2026-05-23 18:15:01 - INFO - Starting to listen for events... - {}
+2026-05-23 18:16:08 - INFO - Starting to listen for events... - {}
+2026-05-23 18:18:13 - INFO - Starting to listen for events... - {}
+2026-05-23 18:18:45 - INFO - Starting to listen for events... - {}
+2026-05-23 18:18:48 - INFO - Starting to listen for events... - {}
+2026-05-23 18:21:46 - INFO - Starting to listen for events... - {}
+2026-05-23 18:22:32 - INFO - Starting to listen for events... - {}
+2026-05-23 18:23:01 - INFO - Starting to listen for events... - {}
+2026-05-23 18:23:06 - INFO - Starting to listen for events... - {}
+2026-05-23 18:23:25 - INFO - Starting to listen for events... - {}
+2026-05-23 18:23:43 - INFO - Starting to listen for events... - {}
+2026-05-24 08:17:47 - INFO - Starting to listen for events... - {}
+2026-05-24 08:46:41 - INFO - Starting to listen for events... - {}
+2026-05-24 10:00:18 - INFO - Starting to listen for events... - {}
+2026-05-24 10:34:10 - INFO - Starting to listen for events... - {}
+2026-05-24 10:45:32 - INFO - Starting to listen for events... - {}
+2026-05-24 12:07:20 - INFO - Starting to listen for events... - {}
+2026-05-24 12:30:53 - INFO - Starting to listen for events... - {}
+2026-05-24 14:30:05 - INFO - Starting to listen for events... - {}
+2026-05-24 15:50:48 - INFO - Starting to listen for events... - {}
+2026-05-24 15:51:28 - INFO - Starting to listen for events... - {}
+2026-05-24 15:55:52 - INFO - Starting to listen for events... - {}
+2026-05-24 15:57:02 - INFO - Starting to listen for events... - {}
+2026-05-24 15:58:44 - INFO - Starting to listen for events... - {}
+2026-05-30 07:04:27 - INFO - Starting to listen for events... - {}
+2026-05-30 07:29:44 - INFO - Starting to listen for events... - {}
+2026-05-30 07:32:12 - INFO - Starting to listen for events... - {}
+2026-05-30 07:48:29 - INFO - Starting to listen for events... - {}
+2026-05-30 08:47:28 - INFO - Starting to listen for events... - {}
+2026-05-30 08:56:23 - INFO - Starting to listen for events... - {}
+2026-05-30 08:57:22 - INFO - Starting to listen for events... - {}
+2026-05-30 09:09:08 - INFO - Starting to listen for events... - {}
+2026-05-30 09:10:03 - INFO - Starting to listen for events... - {}
+2026-05-30 09:16:53 - INFO - Starting to listen for events... - {}
+2026-05-30 09:20:17 - INFO - Starting to listen for events... - {}
+2026-05-30 09:21:40 - INFO - Starting to listen for events... - {}
+2026-05-30 09:22:32 - INFO - Starting to listen for events... - {}
+2026-05-30 09:22:49 - INFO - Starting to listen for events... - {}
+2026-05-30 09:38:13 - INFO - Starting to listen for events... - {}
+2026-05-30 09:42:09 - INFO - Starting to listen for events... - {}
+2026-05-30 09:42:49 - INFO - Starting to listen for events... - {}
+2026-05-30 09:45:06 - INFO - Starting to listen for events... - {}
+2026-05-30 09:45:24 - INFO - Starting to listen for events... - {}
+2026-05-30 09:47:49 - INFO - Starting to listen for events... - {}
+2026-05-30 09:48:51 - INFO - Starting to listen for events... - {}
+2026-05-30 09:49:03 - INFO - Starting to listen for events... - {}
+2026-05-30 09:49:51 - INFO - Starting to listen for events... - {}
+2026-05-30 10:36:20 - INFO - Starting to listen for events... - {}
+2026-05-30 12:27:00 - INFO - Starting to listen for events... - {}
+2026-05-30 12:32:50 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': '3179dde4-37aa-4475-ba12-f68406386097', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 12:34:55 - INFO - Starting to listen for events... - {}
+2026-05-30 12:39:41 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': 'da86cb07-5957-49f3-aad4-419e2c66034c', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 12:41:50 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': '132bed1f-389a-4f30-ae0f-2fc16f75431e', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 12:43:13 - INFO - Starting to listen for events... - {}
+2026-05-30 12:43:29 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': 'a1edaed1-dc4e-4e9e-b5c1-408aba18d104', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 12:48:06 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': '42844121-a156-4242-a1a9-04a84ee4a099', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 12:49:47 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': '7999489e-196d-407e-a479-0be6ec830964', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 12:51:22 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': 'b5d456f3-fadc-4892-92a0-3e562e752726', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 12:52:03 - INFO - Starting to listen for events... - {}
+2026-05-30 12:54:31 - INFO - Starting to listen for events... - {}
+2026-05-30 12:54:32 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': 'eda0393d-91fa-4816-983b-0fc77f11239e', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 12:55:58 - INFO - Starting to listen for events... - {}
+2026-05-30 12:56:11 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': '562d4176-8b04-46fb-b0d5-090db3d155bd', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 13:12:17 - INFO - Starting to listen for events... - {}
+2026-05-30 13:12:49 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': '30a865cf-a751-4460-ac49-0f085aac5110', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 13:13:59 - INFO - Starting to listen for events... - {}
+2026-05-30 13:14:06 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': '04e2123b-f8f1-4ffa-9190-c29c1ea086bb', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 13:15:19 - INFO - Starting to listen for events... - {}
+2026-05-30 13:15:45 - INFO - Starting to listen for events... - {}
+2026-05-30 13:15:37 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': '121b627a-9115-43e3-9fe9-e0488c497805', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 13:16:43 - INFO - Starting to listen for events... - {}
+2026-05-30 13:17:29 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': '40e6b7e3-f969-423f-95a3-35b3ab0b2199', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 13:18:25 - INFO - Starting to listen for events... - {}
+2026-05-30 13:23:26 - INFO - Starting to listen for events... - {}
+2026-05-30 13:24:18 - INFO - Starting to listen for events... - {}
+2026-05-30 13:26:25 - INFO - Starting to listen for events... - {}
+2026-05-30 13:26:38 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': '86c65921-d0e5-4ff5-b5af-b9e80b8cd41f', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 13:30:36 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': '0ef39252-6b10-43b1-b190-774d7cb62f0b', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 13:33:35 - INFO - Starting to listen for events... - {}
+2026-05-30 13:33:49 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': 'd51c0a57-2999-431b-b523-524fcf54cc3d', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 13:35:25 - INFO - Starting to listen for events... - {}
+2026-05-30 13:35:31 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': '52e22606-27b5-4ac4-a388-31d87c4d11ba', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 13:36:20 - INFO - Starting to listen for events... - {}
+2026-05-30 13:36:51 - INFO - Starting to listen for events... - {}
+2026-05-30 13:36:59 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': '0b41b084-1b5f-4b3c-9bf7-312407c5871d', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 13:38:23 - INFO - Starting to listen for events... - {}
+2026-05-30 13:39:13 - INFO - Starting to listen for events... - {}
+2026-05-30 13:40:01 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': '06733fac-676d-4c2c-b7e4-c28894a76c38', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 13:40:32 - INFO - Starting to listen for events... - {}
+2026-05-30 13:40:57 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': 'b9b883c5-5b70-48fc-ae2b-761a7b1f714d', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 13:42:11 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': '1384cca1-ff6b-4503-8229-0347d38dd4d4', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 13:44:33 - INFO - Starting to listen for events... - {}
+2026-05-30 13:47:54 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': '0dc898b3-49b9-4afb-bc94-ccf156a205d3', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 13:49:53 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': '5cb518c5-9347-4793-8145-10b41e9e17a4', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 13:52:37 - INFO - Starting to listen for events... - {}
+2026-05-30 13:55:29 - INFO - Starting to listen for events... - {}
+2026-05-30 13:55:58 - INFO - Starting to listen for events... - {}
+2026-05-30 13:56:09 - INFO - Starting to listen for events... - {}
+2026-05-30 13:56:22 - INFO - Starting to listen for events... - {}
+2026-05-30 13:56:48 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': '9607cd21-3a4c-4771-a1df-c7ece9da1f73', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 13:57:44 - INFO - Event received - {'extra': {'correlation_id': '4b1cca0c-8ec9-4f0d-b25e-d9e9b643f4fb', 'execution_id': '4370550b-ecc7-4c1b-a5d7-929a747815fa', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 13:59:09 - INFO - Starting to listen for events... - {}
+2026-05-30 14:00:12 - INFO - Starting to listen for events... - {}
+2026-05-30 14:08:30 - INFO - Starting to listen for events... - {}
+2026-05-30 14:18:43 - INFO - Starting to listen for events... - {}
+2026-05-30 14:19:45 - INFO - Starting to listen for events... - {}
+2026-05-30 14:55:49 - INFO - Starting to listen for events... - {}
+2026-05-30 16:47:31 - INFO - Starting to listen for events... - {}
+2026-05-30 17:07:53 - INFO - Starting to listen for events... - {}
+2026-05-30 17:09:55 - INFO - Starting to listen for events... - {}
+2026-05-30 17:14:30 - INFO - Starting to listen for events... - {}
+2026-05-30 17:15:23 - INFO - Starting to listen for events... - {}
+2026-05-30 17:18:38 - INFO - Starting to listen for events... - {}
+2026-05-30 17:24:10 - INFO - Starting to listen for events... - {}
+2026-05-30 17:31:23 - INFO - Event received - {'extra': {'correlation_id': 'b2390c61-33e2-4616-b162-c803b8cdec0f', 'execution_id': '03db3d85-9458-4a8e-a6d6-d05fff18b4aa', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-30 17:33:33 - INFO - Event received - {'extra': {'correlation_id': 'b2390c61-33e2-4616-b162-c803b8cdec0f', 'execution_id': '0b9d0b9b-aaa6-47ea-b8e3-ba04510f64d3', 'event': 'payment.succeeded', 'user_id': 1}}
+2026-05-31 05:37:17 - INFO - Starting to listen for events... - {}
+2026-05-31 07:35:29 - INFO - Starting to listen for events... - {}
+2026-05-31 07:39:43 - INFO - Starting to listen for events... - {}
+2026-05-31 13:21:48 - INFO - Starting to listen for events... - {}
+2026-05-31 13:27:43 - INFO - Starting to listen for events... - {}
+2026-05-31 17:03:14 - INFO - Starting to listen for events... - {}
+2026-05-31 17:30:55 - INFO - Starting to listen for events... - {}
+2026-05-31 17:47:54 - INFO - Starting to listen for events... - {}
+2026-06-02 07:53:25 - INFO - Starting to listen for events... - {}
+2026-06-02 08:15:07 - INFO - Starting to listen for events... - {}
+2026-06-02 08:39:09 - INFO - Starting to listen for events... - {}
+2026-06-02 12:04:10 - INFO - Starting to listen for events... - {}
+2026-06-02 12:18:17 - INFO - Event received - {'extra': {'correlation_id': '08a50237-3611-4c31-849f-64444af86548', 'execution_id': 'ca8b0e43-eaa3-47a7-bb8e-1f30e8131a65', 'event': 'user.loggedin', 'user_id': 1}}
+2026-06-02 12:20:13 - INFO - Event received - {'extra': {'correlation_id': '08a50237-3611-4c31-849f-64444af86548', 'execution_id': '52507bb6-d20e-4ad3-a3fd-16c724d68034', 'event': 'payment.failed', 'user_id': 1}}
+2026-06-02 12:20:58 - INFO - Event received - {'extra': {'correlation_id': '08a50237-3611-4c31-849f-64444af86548', 'execution_id': '83cc35c9-78a0-4ea6-aed1-e8e82104cbba', 'event': 'payment.failed', 'user_id': 1}}
+2026-06-02 13:03:31 - INFO - Starting to listen for events... - {}
+2026-06-02 13:05:35 - INFO - Starting to listen for events... - {}
+2026-06-02 13:05:43 - INFO - Starting to listen for events... - {}
+2026-06-02 13:12:47 - INFO - Event received - {'extra': {'correlation_id': 'b45b6cd5-1e82-4a76-b03e-477be364dedb', 'execution_id': '574a921b-79de-4a42-9641-70a41e98e814', 'event': 'payment.failed', 'user_id': 1, 'users_user': '13', 'msg': 'Payment failed for VIP user 13.'}}
+2026-06-02 13:15:02 - INFO - Starting to listen for events... - {}
+2026-06-02 13:15:24 - INFO - Starting to listen for events... - {}
+2026-06-02 13:15:29 - INFO - Starting to listen for events... - {}
+2026-06-02 13:19:48 - INFO - Event received - {'extra': {'correlation_id': 'b45b6cd5-1e82-4a76-b03e-477be364dedb', 'execution_id': 'b53f6637-894c-4c83-8144-6f5f2a6d244b', 'event': 'user.loggedin', 'user_id': 1, 'users_user': '13', 'msg': 'Payment failed for VIP user 13.'}}
+2026-06-02 13:21:48 - INFO - Event received - {'extra': {'correlation_id': 'b45b6cd5-1e82-4a76-b03e-477be364dedb', 'execution_id': '1356a3dd-d976-40c5-a9a3-6bdcaeab8c71', 'event': 'user.loggedin', 'user_id': 1, 'users_user': '13', 'msg': 'Payment failed for VIP user 13.'}}
+2026-06-02 13:24:44 - INFO - Event received - {'extra': {'correlation_id': 'b45b6cd5-1e82-4a76-b03e-477be364dedb', 'execution_id': '0c653d4a-8e5b-44cc-bedb-d00866204c8f', 'event': 'user.loggedin', 'user_id': 1, 'users_user': '12', 'msg': 'Payment failed for VIP user 12.'}}
+2026-06-02 13:25:56 - INFO - Event received - {'extra': {'correlation_id': 'b45b6cd5-1e82-4a76-b03e-477be364dedb', 'execution_id': 'ff533f14-b7e6-4819-b2b5-5406971f59a3', 'event': 'user.loggedin', 'user_id': 1, 'users_user': '12', 'msg': 'VIP user 12 just logged in.'}}
+2026-06-02 16:00:30 - INFO - Starting to listen for events... - {}
