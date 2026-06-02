@@ -66,9 +66,12 @@ Example event:
 ```json
 {
   "event_type": "payment.received",
-  "payload": {},
-  "timestamp": "2025-01-01T00:00:00Z",
-  "source": "stripe"
+  "payload": { 
+       'amount': 120,
+       'user': 'vip'
+  },
+  "user": "2",
+  "message": "payment received by user 2"
 }
 ```
 
