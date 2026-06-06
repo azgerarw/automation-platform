@@ -454,3 +454,5 @@
 2026-06-02 13:24:44 - INFO - Event received - {'extra': {'correlation_id': 'b45b6cd5-1e82-4a76-b03e-477be364dedb', 'execution_id': '0c653d4a-8e5b-44cc-bedb-d00866204c8f', 'event': 'user.loggedin', 'user_id': 1, 'users_user': '12', 'msg': 'Payment failed for VIP user 12.'}}
 2026-06-02 13:25:56 - INFO - Event received - {'extra': {'correlation_id': 'b45b6cd5-1e82-4a76-b03e-477be364dedb', 'execution_id': 'ff533f14-b7e6-4819-b2b5-5406971f59a3', 'event': 'user.loggedin', 'user_id': 1, 'users_user': '12', 'msg': 'VIP user 12 just logged in.'}}
 2026-06-02 16:00:30 - INFO - Starting to listen for events... - {}
+2026-06-06 09:09:50 - INFO - Starting to listen for events... - {}
+2026-06-06 13:34:42 - INFO - Starting to listen for events... - {}
