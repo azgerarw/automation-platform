@@ -1,4 +1,3 @@
-import assert from 'node:assert';
 import executionsRoute from '../routes/executions.js';
 import eventsRoute from '../routes/events.js';
 import { describe, expect, it } from 'vitest';

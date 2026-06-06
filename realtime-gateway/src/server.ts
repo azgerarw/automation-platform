@@ -1,20 +1,10 @@
-import express from 'express';
-import executionsRoute from './routes/executions.js';
-import eventsRoute from './routes/events.js';
 import client from './db/red_db.js';
 import { initSocket } from "./db/socket_io.js";
 import http from "http";
 await client.connect();
 import os from "os";
 import pool from './db/ms.js';
-
-const app = express();
-
-app.use(express.json());
-
-
-app.use("/executions", executionsRoute);
-app.use("/events", eventsRoute);
+import app from './app.js';
 
 const server = http.createServer(app);
 
