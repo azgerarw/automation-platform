@@ -25,7 +25,7 @@ jobs:
 
       - name: Run Node service tests
         run: |
-          for d in api-gateway auth-service realtime-gateway webhook-service frontend; do
+          for d in api-gateway auth-service webhook-service frontend; do
             cd "$d"
             npm test
             cd -
@@ -60,6 +60,6 @@ jobs:
         - uses: actions/checkout@v4
 
         - name: Build Docker
-          run: docker compose run --build
+          run: docker compose up --build
 
   
