@@ -6,33 +6,66 @@ on:
       - main
       
 jobs:
-      
+
   tests:
     runs-on: ubuntu-latest
-
+    services:
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
     steps:
       - uses: actions/checkout@v4
 
+      # NODE
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
+      - name: Install Node dependencies
+        run: |
+          for d in api-gateway auth-service webhook-service frontend realtime-gateway; do
+            cd "$d"
+            npm install
+            cd -
+          done
+
+      - name: Run Node tests
+        run: |
+          for d in api-gateway auth-service webhook-service frontend realtime-gateway; do
+            cd "$d"
+            npm test
+            cd -
+          done
+
+      # PYTHON
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-
-      - name: Run Python service tests
+      - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
+
           for d in execution-service notification-service rule-service user-service; do
             cd "$d"
-            python -m pip install .
-            python -m unittest discover -s tests
+
+            pip install -r requirements.txt
+
             cd -
-          done 
+          done
+
+      - name: Run Python tests
+        run: |
+          for d in execution-service notification-service rule-service user-service; do
+            cd "$d"
+
+            python -m unittest discover -s tests
+
+            cd -
+          done
 
   security:
     runs-on: ubuntu-latest
