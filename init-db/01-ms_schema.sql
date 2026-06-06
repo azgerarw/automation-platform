@@ -1,7 +1,7 @@
 --
 -- PostgreSQL database dump
 --
-
+\connect microservices_db;
 \restrict N6OxqIWmTKhEIqEnZQhIk6ZzLaIRHq9D1j286S40utAONJWS6u2nYpeDsRaVJ55
 
 -- Dumped from database version 18.3 (Debian 18.3-1.pgdg13+1)

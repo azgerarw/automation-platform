@@ -1,7 +1,7 @@
 --
 -- PostgreSQL database dump
 --
-
+\connect auth_db;
 \restrict YBSzKiCcCBc3sY3l4MAkLATiCOc4dQSNOxlBWmwAn4rlaADENJHHT6eD1v2qC9T
 
 -- Dumped from database version 18.3 (Debian 18.3-1.pgdg13+1)

@@ -1,7 +1,7 @@
 --
 -- PostgreSQL database dump
 --
-
+\connect rule_db;
 \restrict KhMfSe1AioSxAbi7OQDTJzasJhMhz8Sz3gePUBj8nYbSuq7hUfLIG6K7xjMShWE
 
 -- Dumped from database version 18.3 (Debian 18.3-1.pgdg13+1)
