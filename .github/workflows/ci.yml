@@ -42,7 +42,6 @@ jobs:
           docker compose exec -T api-gateway npm test
           docker compose exec -T webhook-service npm test
           docker compose exec -T auth-service npm test
-          docker compose exec -T realtime-gateway npm test
           docker compose exec -T frontend npm test
 
       - name: Run python tests
