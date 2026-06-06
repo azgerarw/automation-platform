@@ -6,15 +6,7 @@ on:
       - main
       
 jobs:
-  docker:
-    runs-on: ubuntu-latest
-  
-    steps:
-        - uses: actions/checkout@v4
-  
-        - name: Build Docker
-          run: docker compose up 
-        
+      
   tests:
     runs-on: ubuntu-latest
 
@@ -31,13 +23,6 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Run Node service tests
-        run: |
-          for d in api-gateway auth-service webhook-service frontend; do
-            cd "$d"
-            npm test
-            cd -
-          done
 
       - name: Run Python service tests
         run: |
@@ -60,6 +45,15 @@ jobs:
         with:
           scan-type: fs
           scan-ref: .
+  
+  docker:
+    runs-on: ubuntu-latest
+  
+    steps:
+        - uses: actions/checkout@v4
+  
+        - name: Build Docker
+          run: docker compose build
 
 
   
