@@ -19,6 +19,8 @@ services:
     depends_on:
       redis:
         condition: service_healthy
+      postgres:
+        condition: service_started
 
   auth-service:
     build: ./auth-service
@@ -31,6 +33,9 @@ services:
     volumes:
     - ./auth-service:/app
     - /app/node_modules
+    depends_on:
+      postgres:
+        condition: service_started
 
   realtime-gateway:
     build: ./realtime-gateway
@@ -46,6 +51,8 @@ services:
     depends_on:
       redis:
         condition: service_healthy
+      postgres:
+        condition: service_started
 
   webhook-service:
     build: ./webhook-service
@@ -60,6 +67,8 @@ services:
     depends_on:
       redis:
         condition: service_healthy
+      postgres:
+        condition: service_started
   
   execution-service:
     build: ./execution-service
@@ -71,6 +80,9 @@ services:
     environment:
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/rule_db
       MS_DB_URL: postgres://postgres:postgres@postgres:5432/microservices_db
+    depends_on:
+      postgres:
+        condition: service_started
   
   rule-service:
     build: ./rule-service
@@ -82,6 +94,9 @@ services:
     volumes:
       - ./rule-service:/app
       - ./rule-service/src/logs:/app/src/logs
+    depends_on:
+      postgres:
+        condition: service_started
 
   notification-service:
     build: ./notification-service
@@ -92,6 +107,9 @@ services:
     volumes:
       - ./notification-service:/app
       - ./notification-service/src/logs:/app/src/logs
+    depends_on:
+      postgres:
+        condition: service_started
   
   user-service:
     build: ./user-service
@@ -103,6 +121,9 @@ services:
     volumes:
       - ./user-service:/app
       - ./user-service/src/logs:/app/src/logs
+    depends_on:
+      postgres:
+        condition: service_started
   
   # =========================
   # DBS
@@ -133,6 +154,11 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql
       - ./init-db:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 
   # =========================

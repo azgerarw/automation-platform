@@ -2,3 +2,4 @@ CREATE DATABASE rule_db;
 CREATE DATABASE user_db;
 CREATE DATABASE auth_db;
 CREATE DATABASE microservices_db;
+
