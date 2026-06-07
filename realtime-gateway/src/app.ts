@@ -1,6 +1,6 @@
-import express from 'express';
-import executionsRoute from './routes/executions.js';
-import eventsRoute from './routes/events.js';
+import express from "express";
+import eventsRoute from "./routes/events.js";
+import executionsRoute from "./routes/executions.js";
 
 const app = express();
 

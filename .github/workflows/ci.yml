@@ -7,6 +7,24 @@ on:
       
 jobs:
 
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint
+        run: |
+          cd frontend && npx biome check .
+          cd api-gateway && npx biome check .
+          cd realtime-gateway && npx biome check .
+          cd webhook-service && npx biome check .
+          cd auth-service && npx biome check .
+          cd rule-service && poetry run flake8 .
+          cd execution-service && poetry run flake8 .
+          cd user-service && poetry run flake8 .
+          cd notification-service && poetry run flake8 .
+
   security:
     runs-on: ubuntu-latest
 
@@ -37,14 +55,15 @@ jobs:
       - name: Show logs
         run: docker compose logs
 
-      - name: Run tests inside containers
+      - name: Run Integration tests for JS services
         run: |
           docker compose exec -T api-gateway npm test
+          docker compose exec -T realtime-gateway npm test
           docker compose exec -T webhook-service npm test
           docker compose exec -T auth-service npm test
           docker compose exec -T frontend npm test
 
-      - name: Run python tests
+      - name: Run integration tests for python services
         run: |
           docker compose exec -T rule-service python -m unittest discover -s tests
           docker compose exec -T execution-service python -m unittest discover -s tests

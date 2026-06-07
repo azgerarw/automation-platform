@@ -21,6 +21,7 @@
     "ws": "^8.20.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.4.16",
     "@tailwindcss/postcss": "^4.2.2",
     "@tailwindcss/vite": "^4.2.2",
     "@types/i18next": "^12.1.0",

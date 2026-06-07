@@ -1,4 +1,4 @@
-from fastapi import FastAPI, status # type: ignore
+from fastapi import FastAPI, status, HTTPException # type: ignore
 from pydantic import BaseModel # type: ignore
 from db.db import get_connection
 import httpx # type: ignore
@@ -23,55 +23,16 @@ class RuleBody(BaseModel):
     rule: str
     user_id: str
 
-@app.get("/health")
+@app.get("/health", status_code=status.HTTP_200_OK)
 async def root():
-    return {"message": "Rule Service running"}
-
-@app.post("/test", status_code=status.HTTP_201_CREATED)
-async def create_rule(rule_body: RuleBody):
-
-    conn = get_connection()
-    cursor = conn.cursor()
-    timestamp = datetime.now()
-    if not rule_body.rule:
-        return {"error": "something went wrong"}
-
-    cursor.execute(
-        "INSERT INTO rules (user_id, description, timestamp) VALUES (%s, %s, %s)",
-        (rule_body.user_id, rule_body.rule, timestamp)
-    )
-    conn.commit()
-    cursor.close()
-    conn.close()
-
-    # Simular evento hacia webhook-service
-    event_payload = {
-        "user_id": rule_body.user_id,
-        "rule": rule_body.rule,
-        "event": "RULE_CREATED"
-    }
-
-    async with httpx.AsyncClient() as client:
-        response = await client.post(
-            "http://webhook-service:5000/test",
-            json=event_payload
+    try: 
+        return {"message": "Rule Service running"}
+    except Exception as e:
+        print(e)
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
         )
-
-    conn.close()
-
-    if response.headers.get("content-type", "").startswith("application/json"):
-        webhook_data = response.json()
-    else:
-        webhook_data = {
-            "error": "Invalid response",
-            "status_code": response.status_code,
-            "raw": response.text
-        }
-        
-    return {
-        "message": "Rule created",
-        "webhook_response": webhook_data
-    }
 
 # =========================
 # SERVICE METRICS

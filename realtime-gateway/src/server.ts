@@ -1,53 +1,49 @@
-import client from './db/red_db.js';
+import http from "node:http";
+import os from "node:os";
+import app from "./app.js";
+import pool from "./db/ms.js";
+import client from "./db/red_db.js";
 import { initSocket } from "./db/socket_io.js";
-import http from "http";
-await client.connect();
-import os from "os";
-import pool from './db/ms.js';
-import app from './app.js';
 
+await client.connect();
 const server = http.createServer(app);
 
 const io = initSocket(server);
 
 io.on("connection", (socket: any) => {
-    console.log(socket.id);
+	console.log(socket.id);
 
-    socket.on("join", ({ userId }: { userId: string }) => {
+	socket.on("join", ({ userId }: { userId: string }) => {
+		socket.join(`user:${userId}`);
+		console.log(`Socket joined user:${userId}`);
 
-        socket.join(`user:${userId}`);
-        console.log(`Socket joined user:${userId}`);
-
-        if (userId === "11") {
-            socket.join("admins");
-        }
-
-    });
+		if (userId === "11") {
+			socket.join("admins");
+		}
+	});
 });
 
 // service metrics
 let lastRequestAt: Date | null = null;
 let totalRequests = 0;
 
-app.use((req, res, next) => {
-  totalRequests++;
-  lastRequestAt = new Date();
-  next();
+app.use((_req, _res, next) => {
+	totalRequests++;
+	lastRequestAt = new Date();
+	next();
 });
 
 setInterval(async () => {
+	const memory = process.memoryUsage();
 
-  const memory = process.memoryUsage();
+	const uptimeMinutes = process.uptime() / 60;
 
-  const uptimeMinutes = process.uptime() / 60;
+	const requestsPerMinute =
+		uptimeMinutes > 0 ? totalRequests / uptimeMinutes : totalRequests;
 
-  const requestsPerMinute =
-    uptimeMinutes > 0
-      ? totalRequests / uptimeMinutes
-      : totalRequests;
-
-  console.log('updating server metrics')
-  await pool.query(`
+	console.log("updating server metrics");
+	await pool.query(
+		`
     UPDATE microservices
     SET
       cpu_usage = $1,
@@ -64,25 +60,30 @@ setInterval(async () => {
       rss = $12
 
     WHERE service_name = 'realtime-gateway'
-  `, [
-    os.loadavg()[0],
-    memory.rss / 1024 / 1024,
-    Math.floor(process.uptime()),
-    memory.heapUsed,
-    memory.heapTotal,
-    lastRequestAt,
-    lastRequestAt,
-    lastRequestAt,
-    totalRequests,
-    requestsPerMinute,
-    process.pid,
-    memory.rss
-  ]);
-
+  `,
+		[
+			os.loadavg()[0],
+			memory.rss / 1024 / 1024,
+			Math.floor(process.uptime()),
+			memory.heapUsed,
+			memory.heapTotal,
+			lastRequestAt,
+			lastRequestAt,
+			lastRequestAt,
+			totalRequests,
+			requestsPerMinute,
+			process.pid,
+			memory.rss,
+		],
+	);
 }, 10000);
 
+app.get("/health", (req, res) => {
+	res.json({ service: "auth-service", status: req.statusCode });
+});
+
 server.listen(4500, () => {
-  console.log("Realtime Gateway running on port 4500");
+	console.log("Realtime Gateway running on port 4500");
 });
 
 export default io;

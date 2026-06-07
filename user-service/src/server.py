@@ -1,5 +1,4 @@
-from fastapi import FastAPI, status # type: ignore
-from pydantic import BaseModel # type: ignore
+from fastapi import FastAPI, HTTPException # type: ignore
 from db.db import get_connection
 from src.routers import users
 from src.routers import alerts
@@ -16,7 +15,14 @@ app = FastAPI()
 
 @app.get("/health")
 async def root():
-    return {"message": "User Service running"}
+    try: 
+        return {"message": "User Service running"}
+    except Exception as e:
+        print(e)
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
 
 # =========================
 # SERVICE METRICS

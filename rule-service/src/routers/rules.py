@@ -1,5 +1,4 @@
-from fastapi import HTTPException # type: ignore
-from fastapi import status, APIRouter # type: ignore
+from fastapi import status, APIRouter, HTTPException # type: ignore
 from pydantic import BaseModel # type: ignore
 from db.db import get_connection
 from src.models.rule import Rule

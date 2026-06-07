@@ -1,14 +1,13 @@
-import executionsRoute from '../routes/executions.js';
-import eventsRoute from '../routes/events.js';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-describe('Realtime Gateway routers', () => {
-  it('exports valid Express routers', () => {
-    [executionsRoute, eventsRoute].forEach((router) => {
-      expect(router).toBeDefined();
-      expect(typeof router).toBe('function');
-      expect(typeof router.use).toBe('function');
-      expect('stack' in router).toBe(true);
-    });
-  });
+describe("User API", () => {
+	it("POST /health - health check", async () => {
+		const res = await fetch("http://localhost:4500/health", {
+			method: "GET",
+		});
+
+		const data = await res.json();
+		expect(res.status).toBe(200);
+		expect(data.status).toBe("ok");
+	});
 });

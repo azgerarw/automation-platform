@@ -12,3 +12,18 @@ describe('Auth Service routers', () => {
     });
   });
 });
+
+describe('User API', () => {
+
+  it('POST /health - health check', async () => {
+    const res = await fetch('http://localhost:4000/health', {
+      method: 'GET',
+      });
+
+    
+    const data = await res.json();
+    expect(res.status).toBe(200);
+    expect(data.status).toBe('ok');
+  });
+
+});

@@ -465,3 +465,25 @@
 2026-06-06 17:53:41 - INFO - Starting to listen for events... - {}
 2026-06-06 18:05:25 - INFO - Starting to listen for events... - {}
 2026-06-06 18:25:24 - INFO - Starting to listen for events... - {}
+2026-06-07 06:17:14 - INFO - Starting to listen for events... - {}
+2026-06-07 08:12:03 - INFO - Starting to listen for events... - {}
+2026-06-07 09:06:04 - INFO - Starting to listen for events... - {}
+2026-06-07 09:07:27 - INFO - Starting to listen for events... - {}
+2026-06-07 09:10:00 - INFO - Starting to listen for events... - {}
+2026-06-07 09:10:33 - INFO - Starting to listen for events... - {}
+2026-06-07 09:11:20 - INFO - Starting to listen for events... - {}
+2026-06-07 09:12:33 - INFO - Starting to listen for events... - {}
+2026-06-07 09:14:30 - INFO - Starting to listen for events... - {}
+2026-06-07 09:14:48 - INFO - Starting to listen for events... - {}
+2026-06-07 09:16:09 - INFO - Starting to listen for events... - {}
+2026-06-07 09:16:13 - INFO - Health check endpoint called - {'extra': {'correlation_id': '12345', 'method': 'GET', 'url': '/health', 'status_code': 200, 'elapsed_time': 4.76837158203125e-07, 'extra_info': 'This is additional info for the health check log'}}
+2026-06-07 09:16:28 - INFO - Starting to listen for events... - {}
+2026-06-07 09:16:30 - INFO - Health check endpoint called - {'extra': {'correlation_id': '12345', 'method': 'GET', 'url': '/health', 'status_code': 200, 'elapsed_time': 4.76837158203125e-07, 'extra_info': 'This is additional info for the health check log'}}
+2026-06-07 09:16:35 - INFO - Starting to listen for events... - {}
+2026-06-07 09:18:02 - INFO - Starting to listen for events... - {}
+2026-06-07 09:18:32 - INFO - Starting to listen for events... - {}
+2026-06-07 09:18:39 - INFO - Health check endpoint called - {'extra': {'correlation_id': '12345', 'method': 'GET', 'url': '/health', 'status_code': 200, 'elapsed_time': 9.5367431640625e-07, 'extra_info': 'This is additional info for the health check log'}}
+2026-06-07 09:20:50 - INFO - Starting to listen for events... - {}
+2026-06-07 09:21:03 - INFO - Starting to listen for events... - {}
+2026-06-07 09:21:09 - INFO - Health check endpoint called - {'extra': {'correlation_id': '12345', 'method': 'GET', 'url': '/health', 'status_code': 200, 'elapsed_time': 7.152557373046875e-07, 'extra_info': 'This is additional info for the health check log'}}
+2026-06-07 09:36:06 - INFO - Health check endpoint called - {'extra': {'correlation_id': '12345', 'method': 'GET', 'url': '/health', 'status_code': 200, 'elapsed_time': 2.384185791015625e-07, 'extra_info': 'This is additional info for the health check log'}}
