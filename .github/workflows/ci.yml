@@ -13,17 +13,48 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Lint
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install JS dependencies
         run: |
-          cd frontend && npx biome check .
-          cd api-gateway && npx biome check .
-          cd realtime-gateway && npx biome check .
-          cd webhook-service && npx biome check .
-          cd auth-service && npx biome check .
-          cd rule-service && poetry run flake8 .
-          cd execution-service && poetry run flake8 .
-          cd user-service && poetry run flake8 .
-          cd notification-service && poetry run flake8 .
+          for d in frontend api-gateway realtime-gateway webhook-service auth-service; do
+            cd "$d"
+            npm install
+            cd ..
+          done
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install Python dependencies
+        run: |
+          for d in rule-service execution-service user-service notification-service; do
+            cd "$d"
+            poetry install
+            cd ..
+          done
+
+      - name: Run linters
+        run: |
+          for d in frontend api-gateway realtime-gateway webhook-service auth-service; do
+            cd "$d"
+            npx biome check .
+            cd ..
+          done
+
+          for d in rule-service execution-service user-service notification-service; do
+            cd "$d"
+            poetry run flake8 .
+            cd ..
+          done
 
   security:
     runs-on: ubuntu-latest

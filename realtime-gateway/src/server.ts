@@ -79,7 +79,7 @@ setInterval(async () => {
 }, 10000);
 
 app.get("/health", (req, res) => {
-	res.json({ service: "auth-service", status: req.statusCode });
+	res.json({ service: "realtime-gateway", message: 'ok' });
 });
 
 server.listen(4500, () => {

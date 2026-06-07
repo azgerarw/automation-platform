@@ -8,6 +8,7 @@ describe("User API", () => {
 
 		const data = await res.json();
 		expect(res.status).toBe(200);
-		expect(data.status).toBe("ok");
+		expect(data.message).toEqual("ok");
+		expect(data.service).toEqual("realtime-gateway");
 	});
 });
