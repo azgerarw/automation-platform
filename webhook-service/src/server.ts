@@ -3,10 +3,12 @@ import os from "os";
 import pool from './db/ms_db.js';
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from './config/swagger.js';
-
+import pClient from 'prom-client';
 import eventsRoute from './routes/events/events.js';
 
 const app = express();
+const register = new pClient.Registry();
+pClient.collectDefaultMetrics({ register });
 
 app.use(express.json());
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
@@ -82,6 +84,11 @@ app.use("/events", eventsRoute);
 
 app.get("/health", async (req, res) => {
   res.json({ service: "webhook-service", status: "ok" });
+});
+
+app.get("/metrics", async (_req, res) => {
+  res.set("Content-Type", register.contentType);
+  res.end(await register.metrics());
 });
 
 app.listen(5000, () => {

@@ -38,7 +38,7 @@ jobs:
         run: |
           for d in rule-service execution-service user-service notification-service; do
             cd "$d"
-            poetry install
+            poetry install --no-root
             cd ..
           done
 

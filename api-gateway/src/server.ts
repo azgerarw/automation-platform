@@ -1,4 +1,5 @@
 import express from 'express';
+import helment from 'helmet';
 import cors from 'cors';
 import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
@@ -10,11 +11,15 @@ import servicesRoutes from './routes/microservices/microservices.js';
 import cookieParser from "cookie-parser";
 import os from "os";
 import pool from './db/db.js';
+import pClient from 'prom-client';
 
 const app = express();
-
+const register = new pClient.Registry();
+pClient.collectDefaultMetrics({ register });
 app.use(express.json());
 app.use(cookieParser());
+
+app.use(helment());
 
 app.use(cors({
   origin: 'http://localhost:5173',
@@ -89,6 +94,11 @@ app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.get("/health", (req, res) => {
   res.json({ service: "api-gateway", status: "ok" });
+});
+
+app.get("/metrics", async (_req, res) => {
+  res.set("Content-Type", register.contentType);
+  res.end(await register.metrics());
 });
 
 app.use("/users", userRoutes);

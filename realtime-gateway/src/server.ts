@@ -4,6 +4,10 @@ import app from "./app.js";
 import pool from "./db/ms.js";
 import client from "./db/red_db.js";
 import { initSocket } from "./db/socket_io.js";
+import pClient from "prom-client";
+
+const register = new pClient.Registry();
+pClient.collectDefaultMetrics({ register });
 
 await client.connect();
 const server = http.createServer(app);
@@ -80,6 +84,11 @@ setInterval(async () => {
 
 app.get("/health", (req, res) => {
 	res.json({ service: "realtime-gateway", message: 'ok' });
+});
+
+app.get("/metrics", async (_req, res) => {
+  res.set("Content-Type", register.contentType);
+  res.end(await register.metrics());
 });
 
 server.listen(4500, () => {

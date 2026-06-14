@@ -6,9 +6,11 @@ import apiKeysRoute from './routes/apiKeys/apiKeys.js';
 import cookieParser from 'cookie-parser';
 import os from "os";
 import ms_pool from './db/ms.js';
+import pClient from 'prom-client';
 
 const app = express();
-
+const register = new pClient.Registry();
+pClient.collectDefaultMetrics({ register });
 app.use(express.json());
 app.use(cookieParser());
 
@@ -87,6 +89,11 @@ app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.get("/health", (req, res) => {
   res.json({ service: "auth-service", status: "ok" });
+});
+
+app.get("/metrics", async (_req, res) => {
+  res.set("Content-Type", register.contentType);
+  res.end(await register.metrics());
 });
 
 app.use("/users", usersRoute);
