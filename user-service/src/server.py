@@ -1,4 +1,5 @@
-from fastapi import FastAPI, HTTPException # type: ignore
+from fastapi import FastAPI, HTTPException, Request as FastAPIRequest # type: ignore
+from fastapi.responses import JSONResponse # type: ignore
 from db.db import get_connection
 from src.routers import users
 from src.routers import alerts
@@ -12,6 +13,39 @@ from db.ms import get_connection
 from urllib.request import Request
 
 app = FastAPI()
+
+# -------------------------
+# SECURITY HEADERS + SAFE ERRORS
+# -------------------------
+
+@app.middleware("http")
+async def security_headers_and_error_middleware(request: FastAPIRequest, call_next):
+    try:
+        response = await call_next(request)
+        response.headers.setdefault("X-Content-Type-Options", "nosniff")
+        response.headers.setdefault("Cross-Origin-Resource-Policy", "same-origin")
+        return response
+    except Exception:
+        # Avoid leaking internals/stack traces
+        return JSONResponse(
+            status_code=500,
+            content={"error": "Internal server error", "message": "An unexpected error occurred"},
+        )
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(_request: FastAPIRequest, exc: HTTPException):
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"error": "Request failed", "message": "An error occurred processing the request"},
+    )
+
+@app.exception_handler(Exception)
+async def exception_handler(_request: FastAPIRequest, _exc: Exception):
+    return JSONResponse(
+        status_code=500,
+        content={"error": "Internal server error", "message": "An unexpected error occurred"},
+    )
+
 
 @app.get("/health")
 async def root():

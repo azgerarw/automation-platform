@@ -17,19 +17,7 @@ export default defineConfig({
       'X-Frame-Options': 'DENY',
       // Prevent MIME type sniffing
       'X-Content-Type-Options': 'nosniff',
-      // Content Security Policy
-      'Content-Security-Policy': [
-        "default-src 'self'",
-        "script-src 'self' 'unsafe-inline'",
-        "style-src 'self' 'unsafe-inline'",
-        "connect-src 'self' ws://localhost:5173",
-        "img-src 'self' data:",
-        "font-src 'self'",
-        "object-src 'none'",
-        "base-uri 'self'",
-        "form-action 'self'",
-        "frame-ancestors 'none'"
-      ].join('; '),
+      
       // Permissions Policy (replaces Feature-Policy)
       'Permissions-Policy': [
         'accelerometer=()',
@@ -41,8 +29,7 @@ export default defineConfig({
         'payment=()',
         'usb=()'
       ].join(', '),
-      // Cross-Origin-Embedder-Policy
-      'Cross-Origin-Embedder-Policy': 'require-corp',
+      
       // Referrer Policy
       'Referrer-Policy': 'strict-origin-when-cross-origin'
     }

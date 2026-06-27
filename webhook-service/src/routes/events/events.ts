@@ -174,7 +174,7 @@ router.post("/publish", async (req, res) => {
             })
         );
 
-        return res.json({
+        return res.status(response.status).json({
             authServiceResponse: data,
             webhookServiceResponse: "Event published"
         });
@@ -182,7 +182,7 @@ router.post("/publish", async (req, res) => {
     } catch (error) {
 
         return res.status(500).json({
-            error: error
+            error: "Internal server error"
         });
     }
 });
@@ -200,8 +200,8 @@ router.get("/all", async (req, res) => {
             });
         } catch(error) {
 
-            return res.json({
-                error: error,
+            return res.status(500).json({
+                error: "Internal server error",
                 status: 500
             })
         }
@@ -223,8 +223,8 @@ router.get("/list/:user_id", async (req, res) => {
             });
         } catch(error) {
 
-            return res.json({
-                error: error,
+            return res.status(500).json({
+                error: "Internal server error",
                 status: 500
             })
         }

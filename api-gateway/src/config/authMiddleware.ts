@@ -20,18 +20,31 @@ const authMiddleware = async (req: Request, res: Response, next: NextFunction) =
       return res.status(401).json({ error: "Refresh token missing" });
     }
 
-    const response = await fetch("http://auth-service:4000/refresh", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ refreshToken: rtoken }),
-    });
+    try {
+      const response = await fetch("http://auth-service:4000/users/refresh", {
+        method: "POST",
+        headers: { "Content-Type": "application/json"},
+        body: JSON.stringify({ refreshToken: rtoken }),
+      });
 
-    const data = await response.json();
+      let data;
+      try {
+        data = await response.json();
+      } catch {
+        data = { message: "token refresh failed" };
+      }
 
-    return res.status(401).json({
-      message: 'token refreshed',
-      newToken: data
-    });
+      // Never leak upstream error payloads; return a consistent shape
+      return res.status(401).json({
+        message: 'token refreshed',
+        newToken: (data && (data.accessToken ?? data.token ?? data.newToken)) ?? null
+      });
+    } catch (_error) {
+      // Generic message to avoid info disclosure
+      return res.status(502).json({
+        error: "authentication service unavailable"
+      });
+    }
   }
 
   req.user = validToken.payload

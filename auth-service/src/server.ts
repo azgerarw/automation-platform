@@ -4,15 +4,32 @@ import swaggerSpec from './config/swagger.js';
 import usersRoute from './routes/users/users.js';
 import apiKeysRoute from './routes/apiKeys/apiKeys.js';
 import cookieParser from 'cookie-parser';
+import helmet from 'helmet';
 import os from "os";
 import ms_pool from './db/ms.js';
 import pClient from 'prom-client';
+import { logger } from './config/logger.js';
 
 const app = express();
 const register = new pClient.Registry();
 pClient.collectDefaultMetrics({ register });
 app.use(express.json());
 app.use(cookieParser());
+app.disable("x-powered-by");
+
+// Security headers with proper CSP
+app.use(helmet({
+  contentSecurityPolicy: false
+}));
+
+// Permissions-Policy header
+app.use((_req, res, next) => {
+  res.setHeader(
+    "Permissions-Policy",
+    "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), accelerometer=(), gyroscope=(), display-capture=(), document-domain=(), fullscreen=(self)"
+  );
+  next();
+});
 
 // service metrics
 let lastRequestAt: Date | null = null;
@@ -21,6 +38,23 @@ let totalRequests = 0;
 app.use((req, res, next) => {
   totalRequests++;
   lastRequestAt = new Date();
+
+  const start = Date.now();
+
+  res.on("finish", () => {
+
+    logger.info({
+      event: "HTTP_REQUEST",
+      method: req.method,
+      path: req.originalUrl,
+      status: res.statusCode,
+      ip: req.ip,
+      durationMs: Date.now() - start,
+      userAgent: req.headers["user-agent"]
+    });
+
+  });
+
   next();
 });
 
@@ -75,7 +109,14 @@ setInterval(async () => {
 }, 10000);
 
 
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+if (process.env.NODE_ENV !== 'production') {
+  app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.get("/openapi.json", (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+    res.setHeader("Cache-Control", "no-store");
+    res.send(swaggerSpec);
+  });
+}
 
 /**
  * @swagger
@@ -98,6 +139,24 @@ app.get("/metrics", async (_req, res) => {
 
 app.use("/users", usersRoute);
 app.use("/apiKeys", apiKeysRoute);
+
+// Catch-all route for undefined paths
+app.use((_req, res) => {
+  res.status(404).json({
+    error: "Not found",
+    message: "The requested endpoint does not exist"
+  });
+});
+
+
+// Global error handler to prevent info leakage
+app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
+  console.error(err);
+  res.status(500).json({
+    error: "Internal server error",
+    message: "An unexpected error occurred"
+  });
+});
 
 app.listen(4000, () => {
   console.log("Auth Service running on port 4000");

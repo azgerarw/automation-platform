@@ -45,15 +45,20 @@ const collectConsentData = async () => {
   const userAgent = navigator.userAgent;
   const language = navigator.language || 'unknown';
   const languages = navigator.languages || [language];
-  const region = extractRegionFromLocale(language);
-  const currency = inferCurrencyFromLocale(language);
-  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || null;
 
   let ip: string | null = null;
+  let country = null;
+  let city = null;
+  let timezone = null;
+  let currency  = null;
   try {
-    const response = await fetch('https://api.ipify.org?format=json');
+    const response = await fetch('http://localhost:3000/cookies');
     const data = await response.json();
     ip = data?.ip ?? null;
+    country = data?.country ?? null;
+    city = data?.city ?? null;
+    timezone = data?.timezone ?? null;
+    currency = /Europe\//.test(data.timezone) ? 'EUR' : inferCurrencyFromLocale(language);
   } catch {
     ip = null;
   }
@@ -62,13 +67,14 @@ const collectConsentData = async () => {
     language,
     languages,
     currency,
-    region,
+    country,
+    city,
     ip,
     browser: getBrowserName(userAgent),
     device: getDeviceType(userAgent),
     platform: navigator.platform,
     userAgent,
-    timeZone,
+    timezone,
     screen: `${window.screen.width}x${window.screen.height}`,
     vendor: navigator.vendor,
     deviceMemory: (navigator as any).deviceMemory ?? null,

@@ -94,14 +94,12 @@ async def save_rule(rule_body: SaveRuleBody):
             "status": 201
         }
     
-    except Exception as e:
-        print(e)
-        raise HTTPException(
-            status_code=500,
-            detail=str(e)
-        )
+    
+    except Exception:
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 @router.patch("/update", status_code=status.HTTP_201_CREATED)
+
 async def update_rule(rule_body: UpdateRuleBody):
 
     print("RULE RECEIVED:", rule_body.rule)
@@ -148,14 +146,15 @@ async def update_rule(rule_body: UpdateRuleBody):
             "status": 201
         }
     
-    except Exception as e:
-        print(e)
+    except Exception:
         raise HTTPException(
             status_code=500,
-            detail=str(e)
+            detail="Internal server error"
         )
-    
+
+
 @router.patch("/change-state", status_code=status.HTTP_201_CREATED)
+
 async def change_state_rule(rule_body: StateRuleBody):
 
     try:
@@ -168,14 +167,15 @@ async def change_state_rule(rule_body: StateRuleBody):
             "status": 201
         }
     
-    except Exception as e:
+    except Exception:
 
         raise HTTPException(
             status_code=500,
-            detail=str(e)
+            detail="Internal server error"
         )
 
 @router.get("/list/{user_id}", status_code=status.HTTP_202_ACCEPTED)
+
 async def list_rules(user_id: int):
 
     try:
@@ -189,14 +189,15 @@ async def list_rules(user_id: int):
             "rules": rules
         }
     
-    except Exception as e:
+    except Exception:
 
         raise HTTPException(
             status_code=500,
-            detail=str(e)
+            detail="Internal server error"
         )
 
 @router.get("/delete/{rule_id}", status_code=status.HTTP_200_OK)
+
 async def delete_rule(rule_id: int):
 
     try:
@@ -209,14 +210,15 @@ async def delete_rule(rule_id: int):
             "status": 200
         }
     
-    except Exception as e:
+    except Exception:
 
         raise HTTPException(
             status_code=500,
-            detail=str(e)
+            detail="Internal server error"
         )
 
 @router.patch("/retryPolicy", status_code=status.HTTP_200_OK)
+
 async def update_retry_policy(retry_policy_body: RetryPolicyBody):
 
     try:
@@ -233,10 +235,11 @@ async def update_retry_policy(retry_policy_body: RetryPolicyBody):
 
         raise HTTPException(
             status_code=500,
-            detail=str(e)
+            detail="Internal server error"
         )
     
 @router.patch("/globalRetry", status_code=status.HTTP_200_OK)
+
 async def update_global_retry(global_retry_body: GlobalRetryBody):
 
     try:
@@ -249,9 +252,10 @@ async def update_global_retry(global_retry_body: GlobalRetryBody):
             "status": 200
         }
     
-    except Exception as e:
+    except Exception:
 
         raise HTTPException(
             status_code=500,
-            detail=str(e)
+            detail="Internal server error"
         )
+

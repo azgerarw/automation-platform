@@ -64,9 +64,9 @@ router.post("/create", authMiddleware, async (req, res) => {
             });
         } catch(error) {
 
-            return res.json({
-                error: error,
-                status: 500
+            return res.status(502).json({
+                error: "rule service unavailable",
+                status: 502
             })
         }
 
@@ -128,16 +128,16 @@ router.patch("/update", authMiddleware, async (req, res) => {
 
             const data = await response.json();
 
-            return res.status(201).json({
+            return res.status(response.status).json({
                 service: "api-gateway",
                 status: "rule updated",
                 ruleServiceResponse: data
             });
         } catch(error) {
 
-            return res.json({
-                error: error,
-                status: 500
+            return res.status(502).json({
+                error: "rule service unavailable",
+                status: 502
             })
         }
     
@@ -194,18 +194,23 @@ router.patch("/change-state", authMiddleware, async (req, res) => {
                 body: JSON.stringify({ rule_id: payload.rule_id, state: payload.state }),
             });
 
-            const data = await response.json();
-            console.log(data)
-            return res.status(201).json({
+            let data;
+            try {
+              data = await response.json();
+            } catch {
+              data = { message: "rule service error" };
+            }
+
+            return res.status(response.status).json({
                 service: "api-gateway",
                 status: "state updated",
                 ruleServiceResponse: data
             });
         } catch(error) {
 
-            return res.json({
-                error: error,
-                status: 500
+            return res.status(502).json({
+                error: "rule service unavailable",
+                status: 502
             })
         }
     
@@ -242,16 +247,16 @@ router.get("/list/:user_id", authMiddleware, async (req, res) => {
 
             const data = await response.json();
 
-            return res.status(202).json({
+            return res.status(response.status).json({
                 service: "api-gateway",
                 status: "rules fetched",
                 ruleServiceResponse: data
             });
         } catch(error) {
 
-            return res.json({
-                error: error,
-                status: 500
+            return res.status(502).json({
+                error: "rule service unavailable",
+                status: 502
             })
         }
     
@@ -289,16 +294,16 @@ router.get("/delete/:rule_id", authMiddleware, async (req, res) => {
 
             const data = await response.json();
 
-            return res.status(202).json({
+            return res.status(response.status).json({
                 service: "api-gateway",
                 status: "rule deleted",
                 ruleServiceResponse: data
             });
         } catch(error) {
 
-            return res.json({
-                error: error,
-                status: 500
+            return res.status(502).json({
+                error: "rule service unavailable",
+                status: 502
             })
         }
     
@@ -317,15 +322,15 @@ router.patch('/retryPolicy', authMiddleware, async (req, res) => {
 
         const data = await response.json();
 
-        return res.status(200).json({
+        return res.status(response.status).json({
             service: "api-gateway",
             status: "updating retry policy",
             ruleServiceResponse: data
         });
     } catch (error) {
-        return res.json({
-            error: error,
-            status: 500
+        return res.status(502).json({
+            error: "rule service unavailable",
+            status: 502
         });
     }
 });
@@ -335,7 +340,7 @@ router.patch("/globalRetry", authMiddleware, async (req, res) => {
     const { attempts, delay } = req.body;
 
     if(!attempts || !delay){
-        return res.json({
+        return res.status(400).json({
             error: 'missing attempts or delay fields'
         })
     }
@@ -359,13 +364,13 @@ router.patch("/globalRetry", authMiddleware, async (req, res) => {
 
         const data = await response.json();
         
-        res.status(200).json({
+        res.status(response.status).json({
             service: 'api-gateway',
             ruleServiceResponse: data
         })
     }catch(e){
-        res.status(500).json({
-            error: String(e)
+        res.status(502).json({
+            error: "rule service unavailable"
         })
     }
 })
@@ -385,15 +390,15 @@ router.get("/executions/list", authMiddleware, async (req, res) => {
 
             const data = await response.json();
 
-            return res.status(202).json({
+            return res.status(response.status).json({
                 service: "api-gateway",
                 executionServiceResponse: data
             });
         } catch(error) {
 
-            return res.json({
-                error: error,
-                status: 500
+            return res.status(502).json({
+                error: "execution service unavailable",
+                status: 502
             })
         }
     
@@ -412,15 +417,15 @@ router.get("/executions/list/all", authMiddleware, async (req, res) => {
 
             const data = await response.json();
 
-            return res.status(202).json({
+            return res.status(response.status).json({
                 service: "api-gateway",
                 executionServiceResponse: data
             });
         } catch(error) {
 
-            return res.json({
-                error: error,
-                status: 500
+            return res.status(502).json({
+                error: "execution service unavailable",
+                status: 502
             })
         }
     
@@ -440,15 +445,15 @@ router.get("/executions/byId/:e_id", authMiddleware, async (req, res) => {
 
             const data = await response.json();
 
-            return res.status(202).json({
+            return res.status(response.status).json({
                 service: "api-gateway",
                 executionServiceResponse: data.execution
             });
         } catch(error) {
 
-            return res.json({
-                error: error,
-                status: 500
+            return res.status(502).json({
+                error: "execution service unavailable",
+                status: 502
             })
         }
     
@@ -466,15 +471,15 @@ router.get("/executions/metrics", authMiddleware, async (req, res) => {
 
             const data = await response.json();
 
-            return res.status(202).json({
+            return res.status(response.status).json({
                 service: "api-gateway",
                 executionServiceResponse: data.metrics
             });
         } catch(error) {
 
-            return res.json({
-                error: error,
-                status: 500
+            return res.status(502).json({
+                error: "execution service unavailable",
+                status: 502
             })
         }
     
@@ -500,15 +505,15 @@ router.get("/executions/queues", authMiddleware, async (req, res) => {
 
             const data = await response.json();
 
-            return res.status(202).json({
+            return res.status(response.status).json({
                 service: "api-gateway",
                 executionServiceResponse: data.queues
             });
         } catch(error) {
 
-            return res.json({
-                error: error,
-                status: 500
+            return res.status(502).json({
+                error: "execution service unavailable",
+                status: 502
             })
         }
     
@@ -528,15 +533,15 @@ router.get("/events/list", authMiddleware, async (req, res) => {
 
             const data = await response.json();
 
-            return res.status(202).json({
+            return res.status(response.status).json({
                 service: "api-gateway",
                 webhookServiceResponse: data
             });
         } catch(error) {
 
-            return res.json({
-                error: error,
-                status: 500
+            return res.status(502).json({
+                error: "webhook service unavailable",
+                status: 502
             })
         }
     
@@ -554,15 +559,15 @@ router.get("/events/all", authMiddleware, async (req, res) => {
 
             const data = await response.json();
 
-            return res.status(202).json({
+            return res.status(response.status).json({
                 service: "api-gateway",
                 webhookServiceResponse: data.events
             });
         } catch(error) {
 
-            return res.json({
-                error: error,
-                status: 500
+            return res.status(502).json({
+                error: "webhook service unavailable",
+                status: 502
             })
         }
     

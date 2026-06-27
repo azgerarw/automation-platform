@@ -1,10 +1,10 @@
 import time
-
-from urllib.request import Request
+from fastapi import HTTPException # type: ignore
 from src.config.logger import logger
 from src.routers import executions
 from src.handlers.event_handler import handle_event
-from fastapi import FastAPI, Request  # type: ignore
+from fastapi import FastAPI, Request, HTTPException  # type: ignore
+from fastapi.responses import JSONResponse # type: ignore
 import redis.asyncio as aioredis  # type: ignore # versión async de redis
 import json
 import asyncio
@@ -12,10 +12,42 @@ import psutil
 import time
 import os
 import platform
-from datetime import datetime
+from datetime import datetime, UTC
 from db.ms import get_connection
 
 app = FastAPI()
+
+# -------------------------
+# SECURITY HEADERS + SAFE ERRORS
+# -------------------------
+
+@app.middleware("http")
+async def security_headers_and_error_middleware(request: Request, call_next):
+    try:
+        response = await call_next(request)
+        response.headers.setdefault("X-Content-Type-Options", "nosniff")
+        response.headers.setdefault("Cross-Origin-Resource-Policy", "same-origin")
+        return response
+    except Exception:
+        return JSONResponse(
+            status_code=500,
+            content={"error": "Internal server error", "message": "An unexpected error occurred"},
+        )
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(_request: Request, exc: HTTPException):
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"error": "Request failed", "message": "An error occurred processing the request"},
+    )
+
+@app.exception_handler(Exception)
+async def exception_handler(_request: Request, _exc: Exception):
+    return JSONResponse(
+        status_code=500,
+        content={"error": "Internal server error", "message": "An unexpected error occurred"},
+    )
+
 
 red = aioredis.Redis(host="redis", port=6379, db=0)
 
@@ -38,7 +70,7 @@ async def metrics_middleware(request: Request, call_next):
     global last_request_at
 
     total_requests += 1
-    last_request_at = datetime.utcnow()
+    last_request_at = datetime.now(UTC)
 
     response = await call_next(request)
 

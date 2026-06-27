@@ -1,4 +1,5 @@
 import express from 'express';
+import helmet from 'helmet';
 import os from "os";
 import pool from './db/ms_db.js';
 import swaggerUi from "swagger-ui-express";
@@ -11,8 +12,32 @@ const register = new pClient.Registry();
 pClient.collectDefaultMetrics({ register });
 
 app.use(express.json());
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+// Security headers with proper CSP
+app.use(helmet({
+  contentSecurityPolicy: false
+}));
+
+// Permissions-Policy header
+app.use((_req, res, next) => {
+  res.setHeader(
+    "Permissions-Policy",
+    "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), accelerometer=(), gyroscope=(), display-capture=(), document-domain=(), fullscreen=(self)"
+  );
+  next();
+});
+
+if (process.env.NODE_ENV !== 'production') {
+  app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.get("/openapi.json", (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+    res.setHeader("Cache-Control", "no-store");
+    res.send(swaggerSpec);
+  });
+}
+
+
+app.disable("x-powered-by");
 // service metrics
 let lastRequestAt: Date | null = null;
 let totalRequests = 0;
@@ -89,6 +114,23 @@ app.get("/health", async (req, res) => {
 app.get("/metrics", async (_req, res) => {
   res.set("Content-Type", register.contentType);
   res.end(await register.metrics());
+});
+
+// Catch-all route for undefined paths
+app.use((_req, res) => {
+  res.status(404).json({
+    error: "Not found",
+    message: "The requested endpoint does not exist"
+  });
+});
+
+// Global error handler to prevent info leakage
+app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
+  console.error(err);
+  res.status(500).json({
+    error: "Internal server error",
+    message: "An unexpected error occurred"
+  });
 });
 
 app.listen(5000, () => {

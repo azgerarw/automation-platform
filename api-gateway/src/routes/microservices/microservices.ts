@@ -1,5 +1,6 @@
 import express, { Router } from 'express';
 import authMiddleware from '../../config/authMiddleware.js';
+import requireRole from '../../config/requireRol.js';
 import { Request, Response } from "express";
 import pool from '../../db/db.js';
 
@@ -10,7 +11,7 @@ type dbType = {
     size: string
 }
 
-router.get("/", authMiddleware, async (req,res) => {
+router.get("/", authMiddleware, requireRole, async (req,res) => {
 
     try{
 
@@ -30,8 +31,9 @@ router.get("/", authMiddleware, async (req,res) => {
         })
 
     }catch(e){
+        console.error(e);
         return res.status(500).json({
-            error: e
+            error: "internal server error"
         })
     }
 })
@@ -52,8 +54,9 @@ router.get("/circuit", authMiddleware, async (req,res) => {
             executionServiceResponse: data
         })
     }catch(e){
-        return res.status(500).json({
-            error: String(e)
+        console.error(e);
+        return res.status(502).json({
+            error: "execution service unavailable"
         })
     }
 })
@@ -90,8 +93,9 @@ router.get("/dbConnections", authMiddleware, async (req,res) => {
             dbs: dbs
         })
     }catch(e){
+        console.error(e);
         return res.status(500).json({
-            error: String(e)
+            error: "internal server error"
         })
     }
 })

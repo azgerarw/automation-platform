@@ -16,10 +16,9 @@ class UserBody(BaseModel):
 
 @router.post("/register", status_code=status.HTTP_201_CREATED)
 async def create_User(user_body: UserBody):
-
-    
     if not user_body.username or not user_body.email or not user_body.password or not user_body.role:
-        return {"error": "Missing fields"}
+        return {"error": "Missing fields", "status": 400}
+
 
     password_regex = { 
             "regex": r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$",
@@ -46,14 +45,12 @@ async def create_User(user_body: UserBody):
     user = User(email=user_body.email, username=user_body.username, password=hashed, role=user_body.role)
 
     if user.fetch_by_email(user_body.email, user_body.username) == {"error": "User already exists"}:
-        return {"error": "User already exists"}
-    else:
-        user.create()
+        return {"error": "User already exists", "status": 409}
 
-    return {
-        "message": "User created",
-        "status": 201
-    }
+    user.create()
+
+    return {"message": "User created", "status": 201}
+
 
 @router.get("/list", status_code=status.HTTP_200_OK)
 async def list_users():

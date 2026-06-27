@@ -42,35 +42,37 @@ router.post("/login", async (req, res) => {
 
     const data = await response.json();
 
+    const secureCookies = process.env.NODE_ENV === 'production';
+
     res.cookie("refreshToken", data.rt, {
       httpOnly: true,
-      secure: false,
+      secure: secureCookies,
       sameSite: "lax",
       maxAge: 3600000
     });
 
     res.cookie("Token", data.token, {
       httpOnly: true,
-      secure: false,
+      secure: secureCookies,
       sameSite: "lax",
       maxAge: 3600000
     });
 
     res.cookie("User_id", data.user_id, {
       httpOnly: true,
-      secure: false,
+      secure: secureCookies,
       sameSite: "lax",
       maxAge: 3600000
     });
     
     res.cookie("User_role", data.role, {
       httpOnly: true,
-      secure: false,
+      secure: secureCookies,
       sameSite: "lax",
       maxAge: 3600000
     });
 
-    return res.json({
+    return res.status(response.status).json({
       service: "api-gateway",
       status: "user data sent for authorization",
       authServiceResponse: data
@@ -79,9 +81,9 @@ router.post("/login", async (req, res) => {
   } catch (error) {
     console.error(error);
 
-    return res.status(500).json({
+    return res.status(502).json({
       service: "api-gateway",
-      error: "data not sent",
+      error: "upstream service unavailable",
       status: "rejected"
     });
   }
@@ -128,7 +130,7 @@ router.post("/register", async (req, res) => {
 
     const data = await response.json();
 
-    return res.json({
+    return res.status(response.status).json({
       service: "api-gateway",
       status: "user data sent for registration",
       userServiceResponse: data
@@ -137,9 +139,9 @@ router.post("/register", async (req, res) => {
   } catch (error) {
     console.error(error);
 
-    return res.status(500).json({
+    return res.status(502).json({
       service: "api-gateway",
-      error: "data not sent",
+      error: "registration service unavailable",
       status: "rejected"
     });
   }
@@ -196,18 +198,29 @@ router.post("/validateUser", async (req, res) => {
 
     if (validToken.error == 'TOKEN_EXPIRED'){
 
-      const response = await fetch("http://auth-service:4000/refresh", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ refreshToken: rtoken }),
-      });
+      try {
+        const response = await fetch("http://auth-service:4000/users/refresh", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ refreshToken: rtoken }),
+        });
 
-      const data = await response.json();
+        let data;
+        try {
+          data = await response.json();
+        } catch {
+          data = { message: "token refresh failed" };
+        }
 
-      return res.json({ message: 'token refreshed', newToken: data})
+        return res.json({ message: 'token refreshed', newToken: data });
+      } catch (error) {
+        return res.status(502).json({
+          error: "authentication service unavailable"
+        });
+      }
     }
 
-    return res.json({ message: validToken });
+    return res.json({ message: 'token valid' });
     
 
 })
@@ -235,7 +248,11 @@ router.post("/logout", async (req, res) => {
     });
 
     if (!response.ok) {
-      throw new Error("Auth service failed");
+      const errorData = await response.json().catch(() => ({}));
+      return res.status(response.status).json({
+        error: "logout failed",
+        detail: errorData
+      });
     }
 
     res.clearCookie("Token");
@@ -249,8 +266,8 @@ router.post("/logout", async (req, res) => {
   } catch (error) {
     console.error(error);
 
-    return res.status(500).json({
-      error: "logout failed"
+    return res.status(502).json({
+      error: "authentication service unavailable"
     });
   }
 });
@@ -353,7 +370,7 @@ router.patch("/alerts/toggle", authMiddleware, async (req, res) => {
 
     const data = await response.json();
 
-    return res.json({
+    return res.status(response.status).json({
       service: "api-gateway",
       status: "alert status toggled",
       alertStatus: data.newStatus
@@ -362,9 +379,9 @@ router.patch("/alerts/toggle", authMiddleware, async (req, res) => {
   } catch (error) {
     console.error(error);
 
-    return res.status(500).json({
+    return res.status(502).json({
       service: "api-gateway",
-      error: "failed to toggle alert status",
+      error: "user service unavailable",
       status: "rejected"
     });
   }
@@ -381,7 +398,7 @@ router.get("/alerts/fetchStatus", authMiddleware, async (req, res) => {
 
     const data = await response.json();
 
-    return res.json({
+    return res.status(response.status).json({
       service: "api-gateway",
       status: "alert status fetched",
       alertStatus: data.alertStatus
@@ -390,9 +407,9 @@ router.get("/alerts/fetchStatus", authMiddleware, async (req, res) => {
   } catch (error) {
     console.error(error);
 
-    return res.status(500).json({
+    return res.status(502).json({
       service: "api-gateway",
-      error: "failed to fetch alert status",
+      error: "user service unavailable",
       status: "rejected"
     });
   }
@@ -406,11 +423,15 @@ router.get("/list", authMiddleware, async (req, res) => {
     });
 
     if (!response.ok) {
-      throw new Error("User service failed");
+      return res.status(response.status).json({
+        service: "api-gateway",
+        error: "user service error",
+        status: "rejected"
+      });
     }
     const data = await response.json();
 
-    return res.json({
+    return res.status(response.status).json({
       service: "api-gateway",
       status: "users fetched",
       userServiceResponse: data.users
@@ -419,9 +440,9 @@ router.get("/list", authMiddleware, async (req, res) => {
   } catch (error) {
     console.error(error);
 
-    return res.status(500).json({
+    return res.status(502).json({
       service: "api-gateway",
-      error: "failed to fetch users",
+      error: "user service unavailable",
       status: "rejected"
     });
   }

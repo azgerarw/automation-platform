@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 import limiter from '../../config/rateLimit.js';
 import pool from '../../db/db.js';
 import crypto from "crypto";
+import { login_logger, apiKeys_logger } from '../../config/logger.js';
 
 const router = express.Router();
 
@@ -42,12 +43,31 @@ router.post("/login", limiter, async (req, res) => {
     const data = await response.json();
 
     if (!data.user) {
+      login_logger.warn({
+      message: `User not found for email ${email}`,
+      event: "HTTP_REQUEST",
+      method: req.method,
+      path: req.originalUrl,
+      status: res.statusCode,
+      ip: req.ip,
+      timestamp: Date.now(),
+      userAgent: req.headers["user-agent"]});
+
       return res.status(404).json({ message: "User not found" });
     }
 
     const match = await bcrypt.compare(password, data.user.password);
 
     if (!match) {
+      login_logger.warn({
+      message: `Wrong for email ${email}`,
+      event: "HTTP_REQUEST",
+      method: req.method,
+      path: req.originalUrl,
+      status: res.statusCode,
+      ip: req.ip,
+      timestamp: Date.now(),
+      userAgent: req.headers["user-agent"]});
       return res.status(401).json({ message: "Wrong password" });
     }
 
@@ -59,6 +79,16 @@ router.post("/login", limiter, async (req, res) => {
       [data.user.id, refreshToken]
     );
     
+    login_logger.info({
+      message: `User ${email} logged in`,
+      event: "HTTP_REQUEST",
+      method: req.method,
+      path: req.originalUrl,
+      status: res.statusCode,
+      ip: req.ip,
+      timestamp: Date.now(),
+      userAgent: req.headers["user-agent"]});
+
     return res.json({
       service: "auth-service",
       token: accessToken,
@@ -70,6 +100,7 @@ router.post("/login", limiter, async (req, res) => {
   } catch (error) {
 
     console.error(error);
+    login_logger.error('inernal server error')
 
     return res.status(500).json({
       service: "auth-service",
@@ -107,6 +138,16 @@ router.post("/logout", async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
 
   if (!refreshToken) {
+    login_logger.warn({
+      message: `Refresh token missing`,
+      event: "HTTP_REQUEST",
+      method: req.method,
+      path: req.originalUrl,
+      status: res.statusCode,
+      ip: req.ip,
+      timestamp: Date.now(),
+      userAgent: req.headers["user-agent"]});
+
     return res.status(401).json({ message: "Refresh token missing" });
   }
 
@@ -116,10 +157,22 @@ router.post("/logout", async (req, res) => {
       [refreshToken]
     );
 
+    login_logger.info({
+      message: `User ${req.cookies.User_id}logged out`,
+      event: "HTTP_REQUEST",
+      method: req.method,
+      path: req.originalUrl,
+      status: res.statusCode,
+      ip: req.ip,
+      timestamp: Date.now(),
+      userAgent: req.headers["user-agent"]});
+
     return res.json({ message: "Logout OK" });
 
   } catch (err) {
-    return res.status(500).json({ message: err });
+    console.error(err);
+    login_logger.error('error logging out')
+    return res.status(500).json({ message: "internal server error" });
   }
 });
 
@@ -148,20 +201,44 @@ router.post("/refresh", async (req, res) => {
 
   const { refreshToken } = req.body;
 
-  const tokenRecord = await pool.query(
-    "SELECT * FROM refresh_tokens WHERE token=$1",
-    [refreshToken]
-  );
-
-  if (!tokenRecord.rows.length) {
-    return res.status(403).json({ message: "Invalid refresh token" });
+  if (!refreshToken) {
+    return res.status(400).json({ error: "Refresh token missing" });
   }
 
-  const userId = tokenRecord.rows[0].user_id;
+  try {
+    const tokenRecord = await pool.query(
+      "SELECT * FROM refresh_tokens WHERE token=$1 AND revoked=false",
+      [refreshToken]
+    );
 
-  const newAccessToken = generateToken(userId);
+    if (!tokenRecord.rows.length) {
+      return res.status(403).json({ message: "Invalid refresh token" });
+    }
 
-  return res.json({ accessToken: newAccessToken, user_id: userId });
+    await pool.query("UPDATE refresh_tokens SET revoked=true WHERE token=$1", [refreshToken]);
+
+    const userId = tokenRecord.rows[0].user_id;
+
+    const newAccessToken = generateToken(userId);
+    const newRefreshToken = crypto.randomUUID();
+    
+    await pool.query(
+      "INSERT INTO refresh_tokens (user_id, token) VALUES ($1,$2)",
+      [userId, newRefreshToken]
+    );
+
+    res.cookie("refreshToken", newRefreshToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "lax",
+      maxAge: 3600000
+    });
+
+    return res.json({ accessToken: newAccessToken, user_id: userId });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
 
 });
 

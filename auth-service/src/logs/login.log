@@ -1,0 +1,6 @@
+{"level":"info","message":"User logged in: user@test.com"}
+{"level":"info","message":"logged out"}
+{"level":"info","message":"User logged in: user@test.com"}
+{"level":"info","message":"logged out"}
+{"level":"info","message":"User logged in: user@test.com"}
+{"event":"HTTP_REQUEST","ip":"::ffff:172.18.0.9","level":"info","message":"User 1logged out","method":"POST","path":"/users/logout","status":200,"timestamp":1782055451659,"userAgent":"node"}

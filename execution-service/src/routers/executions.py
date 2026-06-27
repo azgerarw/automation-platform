@@ -13,7 +13,7 @@ router = APIRouter()
 async def list_exec(user_id: int):
 
     try:
-        
+        print('received in execution service, user id', user_id)
         execution = Execution(user_id=user_id)
         executions = execution.list_executions()
 
@@ -23,12 +23,9 @@ async def list_exec(user_id: int):
             "executions": executions
         }
     
-    except Exception as e:
+    except Exception:
 
-        raise HTTPException(
-            status_code=500,
-            detail=str(e)
-        )
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 @router.get("/list/all", status_code=status.HTTP_202_ACCEPTED)
 async def list_all_exec():
@@ -44,12 +41,9 @@ async def list_all_exec():
             "executions": executions
         }
     
-    except Exception as e:
+    except Exception:
 
-        raise HTTPException(
-            status_code=500,
-            detail=str(e)
-        )
+        raise HTTPException(status_code=500, detail="Internal server error")
 
 @router.get("/byId/{e_id}", status_code=status.HTTP_202_ACCEPTED)
 async def list_exec_by_exec_id(e_id):
@@ -67,11 +61,11 @@ async def list_exec_by_exec_id(e_id):
             "execution": execution_
         }
     
-    except Exception as e:
+    except Exception:
 
         raise HTTPException(
             status_code=500,
-            detail=str(e)
+            detail="Internal server error"
         )
 
 @router.get("/metrics", status_code=status.HTTP_202_ACCEPTED)
@@ -88,12 +82,12 @@ async def get_metrics():
             "metrics": metrics
         }
     
-    except Exception as e:
+    except Exception:
 
         raise HTTPException(
             status_code=500,
-            detail=str(e)
-)
+            detail="Internal server error"
+        )
     
 @router.get("/queues", status_code=status.HTTP_202_ACCEPTED)
 async def get_queues():
@@ -109,13 +103,13 @@ async def get_queues():
             "queues": queues
         }
     
-    except Exception as e:
+    except Exception:
 
         raise HTTPException(
             status_code=500,
-            detail=str(e)
-)
-    
+            detail="Internal server error"
+        )
+
 @router.get("/circuit", status_code=status.HTTP_202_ACCEPTED)
 async def get_circuit():
 
@@ -137,9 +131,9 @@ async def get_circuit():
             "circuit": circuit
         }
     
-    except Exception as e:
+    except Exception:
 
         raise HTTPException(
             status_code=500,
-            detail=str(e)
+            detail="Internal server error"
         )

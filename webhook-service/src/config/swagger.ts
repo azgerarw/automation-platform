@@ -7,6 +7,7 @@ const options = {
     info: {
       title: "Webhook Service",
       version: "1.0.0",
+      description: "Webhook service for the automation platform"
     },
   },
   apis: ["./src/**/*.ts", "./dist/**/*.js"], 
